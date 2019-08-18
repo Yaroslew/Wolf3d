@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/08/18 12:27:46 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/08/18 14:17:29 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,6 @@ void	mlx_win_init(t_wolf3d *t)
 	t->mlx = mlx_init();
 	t->win = mlx_new_window(t->mlx, WINX, WINY, title);
 	ft_strdel(&title);
-}
-
-void	wolf3d_init(t_wolf3d *t)
-{
-	t->x_pos = 3;
-	t->y_pos = 3;
-	t->x_dir = -1;
-	t->y_dir = 0;
-	t->x_plane = 0;
-	t->y_plane = 0.66;
-	t->ms = 0.05;
-	t->rs = 0.05;
-	t->move_up = 0;
-	t->move_down = 0;
-	t->move_left = 0;
-	t->move_right = 0;
-	t->x_text = 0;
-	t->y_text = 0;
-	load_textures(t);
 }
 
 int		main(int ac, char **av)
