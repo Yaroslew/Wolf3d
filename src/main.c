@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/08/18 14:17:29 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/08/18 14:21:09 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,12 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr(USAGE);
+		ft_printf(USAGE);
 		return (0);
 	}
 	if (!(t = (t_wolf3d *)malloc(sizeof(t_wolf3d))))
 		return (0);
-	if (!(parser(t, av)))
-		return (0);
 	mlx_win_init(t);
-    wolf3d_init(t);
-
 	mlx_loop_hook(t->mlx, move, t);
 	mlx_loop(t->mlx);
 }
