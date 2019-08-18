@@ -6,12 +6,17 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:44:46 by tjuana            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/18 16:40:35 by tjuana           ###   ########.fr       */
+=======
+/*   Updated: 2019/08/18 15:11:10 by tjuana           ###   ########.fr       */
+>>>>>>> 55154a7773987e36a2eb7e5889c94adf32936d75
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+<<<<<<< HEAD
 int		check_map(char *buff, t_wolf3d *w)
 {
 	int		i;
@@ -93,6 +98,8 @@ int		check_side(t_wolf3d *w)
 	return (1);
 }
 
+=======
+>>>>>>> 55154a7773987e36a2eb7e5889c94adf32936d75
 int		read_map(t_wolf3d *w, char **av)
 {
     int		fd;
@@ -109,6 +116,7 @@ int		read_map(t_wolf3d *w, char **av)
 		ft_putstr(": No such file\n");
 		return (0);
 	}
+<<<<<<< HEAD
 	if (!(check_map(buff, w)))
 	{
 		ft_putstr("Map error\n");
@@ -133,3 +141,9 @@ int		read_map(t_wolf3d *w, char **av)
 	}
     return (1);
 }
+=======
+    if (!(w->map = (int **)malloc(sizeof(int *) * w->nb_lines)))
+		return (0);
+    return (1);
+}
+>>>>>>> 55154a7773987e36a2eb7e5889c94adf32936d75
