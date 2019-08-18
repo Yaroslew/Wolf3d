@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/08/18 16:45:14 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/08/18 17:32:21 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,28 @@ void	mlx_win_init(t_wolf3d *w)
 	ft_strdel(&title);
 }
 
+void	wolf3d_init(t_wolf3d *w)
+{
+	w->x_pos = 3;
+	w->y_pos = 3;
+	w->x_dir = -1;
+	w->y_dir = 0;
+	w->x_plane = 0;
+	w->y_plane = 0.66;
+	w->ms = 0.05;
+	w->rs = 0.05;
+	w->move_up = 0;
+	w->move_down = 0;
+	w->move_left = 0;
+	w->move_right = 0;
+	w->x_text = 0;
+	w->y_text = 0;
+}
+
 int		main(int ac, char **av)
 {
 	t_wolf3d *w;
+	
 	if (ac != 2)
 	{
 		ft_putstr(USAGE);
@@ -41,6 +60,7 @@ int		main(int ac, char **av)
 	if (!(read_map(w, av)))
 		return (0);
 	mlx_win_init(w);
+	wolf3d_init(w);
 	mlx_hook(w->win, 17, 0L, ft_close, w);
 	//mlx_loop_hook(w->mlx, move, w);
 	mlx_loop(w->mlx);

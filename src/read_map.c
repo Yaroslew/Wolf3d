@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:44:46 by tjuana            #+#    #+#             */
-/*   Updated: 2019/08/18 16:45:05 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/08/18 17:33:45 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int		second_read(t_wolf3d *w, char **av)
 int		check_side(t_wolf3d *w)
 {
 	int i;
-	
+
 	i = 0;
-	while(i < w->len_line)
+	while (i < w->len_line)
 	{
 		if (w->map[0][i] == 0)
 			return (0);
@@ -80,7 +80,7 @@ int		check_side(t_wolf3d *w)
 		i++;
 	}
 	i = 0;
-	while (i < w->len_line)
+	while (i < w->nb_lines)
 	{
 		if (w->map[i][0] == 0)
 			return (0);
@@ -95,7 +95,7 @@ int		check_side(t_wolf3d *w)
 
 int		read_map(t_wolf3d *w, char **av)
 {
-    int		fd;
+	int		fd;
 	char	*buff;
 	int		i;
 
@@ -131,5 +131,5 @@ int		read_map(t_wolf3d *w, char **av)
 		ft_putstr("Map error\n");
 		return (0);
 	}
-    return (1);
+	return (1);
 }
