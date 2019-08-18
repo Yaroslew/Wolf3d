@@ -14,6 +14,8 @@
 
 void	mess_err(int num)
 {
+	if (num == 0)
+		ft_printf("Не была выделена память. Чекай маллок\n");
 	if (num == 1)
 		ft_printf("Укажите один аргумент - файл карты\n");
 	if (num == 2)

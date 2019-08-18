@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/18 14:08:21 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 16:41:54 by pcorlys-         ###   ########.fr       */
+/*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
+/*   Updated: 2019/08/18 16:26:02 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 
-int main(int ac, char **av)
+t_base *init_base(void)
 {
-	t_base	*base;
+	t_base *base;
 
-	base = init_base();
-	if (ac != 2)
-		mess_err(1);
-	else
-		check_map(av[1], base);
-	record_map(av[1], base);
+	if (!(base = malloc(sizeof(t_base) * 1)))
+		mess_err(0);
+	base->width = 320;
+	base->height = 400;
+	base->w_map = 20;
+	base->h_map = 20;
 
-
-	return (0);
+	return (base);
 }

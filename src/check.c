@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 15:16:15 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/08/18 16:30:48 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include "../includes/wolf.h"
 
-void			check_map(char *str)
+void			check_map(char *str, t_base *base)
 {
 	int		fd;
 	int 	q;
@@ -35,11 +35,11 @@ void			check_map(char *str)
 	while (get_next_line(fd, &line))
 	{
 		height++;
-		if (height > 20)
+		if (height > base->height)
 			mess_err(4);
 		while (line[q])
 		{
-			if (q > 19)
+			if (q > base->w_map - 1)
 				mess_err(6);
 			if (line[q] == 'z')
 				man++;
