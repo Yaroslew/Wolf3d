@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 15:10:07 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/08/18 15:10:46 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_map
 }				t_map;
 
 void	mess_err(int num);
-int		check_map(char *str, int sum_point);
+void		check_map(char *str);
 
 
 
