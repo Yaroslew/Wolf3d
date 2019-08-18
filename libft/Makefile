@@ -3,133 +3,65 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: galiza <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/04/04 19:55:13 by galiza            #+#    #+#              #
-#    Updated: 2019/06/09 21:01:34 by pcorlys-         ###   ########.fr        #
+#    Created: 2019/04/03 18:51:09 by tjuana            #+#    #+#              #
+#    Updated: 2019/08/18 16:27:34 by tjuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = ft_memset.c\
-	ft_bzero.c \
-	ft_memcpy.c \
-	ft_memccpy.c \
-	ft_memmove.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_strlen.c \
-	ft_strdup.c \
-	ft_strcpy.c \
-	ft_strncpy.c \
-	ft_strcat.c \
-	ft_strncat.c \
-	ft_strlcat.c \
-	ft_strchr.c \
-	ft_strrchr.c \
-	ft_strstr.c \
-	ft_strnstr.c \
-	ft_strcmp.c \
-	ft_strncmp.c \
-	ft_atoi.c \
-	ft_isalpha.c \
-	ft_isdigit.c \
-	ft_isalnum.c \
-	ft_isascii.c \
-	ft_isprint.c \
-	ft_toupper.c \
-	ft_tolower.c \
-	ft_memalloc.c \
-	ft_memdel.c \
-	ft_strnew.c \
-	ft_strdel.c \
-	ft_strclr.c \
-	ft_striter.c \
-	ft_striteri.c \
-	ft_strmap.c \
-	ft_strmapi.c \
-	ft_strequ.c \
-	ft_strnequ.c \
-	ft_strsub.c \
-	ft_strjoin.c \
-	ft_strtrim.c \
-	ft_strsplit.c \
-	ft_itoa.c \
-	ft_putchar.c \
-	ft_putstr.c \
-	ft_putnstr.c \
-	ft_putendl.c \
-	ft_putnbr.c \
-	ft_putun_nbr.c \
-	ft_putchar_fd.c \
-	ft_putchar_fd.c \
-	ft_putstr_fd.c \
-	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
-	ft_lstnew.c \
-	ft_lstdelone.c \
-	ft_lstdel.c \
-	ft_lstadd.c \
-	ft_lstiter.c \
-	ft_lstmap.c \
-	ft_count_if.c \
-	ft_foreach.c \
-	ft_sqrt.c \
-	ft_iterative_power.c \
-	ft_swap.c \
-	ft_printf.c \
-	get_next_line.c
+NAME = libft.a
+
+SRCS = ft_putchar.c ft_putchar_fd.c ft_atoi.c ft_strcmp.c ft_strdup.c \
+		ft_strlen.c ft_strstr.c ft_islower.c ft_isupper.c ft_tolower.c \
+		ft_toupper.c ft_isprint.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
+		ft_isalnum.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c \
+		ft_strncmp.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
+		ft_memmove.c ft_memchr.c ft_memcmp.c ft_strchr.c ft_strrchr.c \
+		ft_strlcat.c ft_strnstr.c ft_memalloc.c ft_memdel.c ft_strnew.c \
+		ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c \
+		ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c \
+		ft_putnbr.c ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c ft_putendl.c \
+		ft_putendl_fd.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_strrev.c \
+		ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
+		ft_lstmap.c ft_iswsp.c ft_count_words.c ft_swap.c ft_strclen.c \
+		ft_strndup.c ft_strcdup.c ft_strnlen.c get_next_line.c \
+		ft_intsplitstr.c ft_putdbl.c ft_count_lines.c ft_line_len.c
 
 
-PRINTF = print_c.c\
-		 print_s.c\
-		 print_p.c\
-		 print_f.c\
-		 print_d.c\
-		 print_o.c\
-		 print_u.c\
-		 print_x.c\
-		 print_bigx.c\
-		 print_percent.c\
-		 print_f_sec.c\
-		 print_f_three.c\
-		 print_spaces.c\
-		 print_get_keys.c
 
-OBJ = $(SRC:.c=.o)
-OBJPRINTF = $(PRINTF:.c=.o)
+OBJECTS = ft_putchar.o ft_putchar_fd.o ft_atoi.o ft_strcmp.o ft_strdup.o \
+		ft_strlen.o ft_strstr.o ft_islower.o ft_isupper.o ft_tolower.o \
+		ft_toupper.o ft_isprint.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
+		ft_isalnum.o ft_strcpy.o ft_strncpy.o ft_strcat.o ft_strncat.o \
+		ft_strncmp.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o \
+		ft_memmove.o ft_memchr.o ft_memcmp.o ft_strchr.o ft_strrchr.o \
+		ft_strlcat.o ft_strnstr.o ft_memalloc.o ft_memdel.o ft_strnew.o \
+		ft_strdel.o ft_strclr.o ft_striter.o ft_striteri.o ft_strmap.o \
+		ft_strmapi.o ft_strequ.o ft_strnequ.o ft_strsub.o ft_strjoin.o \
+		ft_putnbr.o ft_putnbr_fd.o ft_putstr.o ft_putstr_fd.o ft_putendl.o \
+		ft_putendl_fd.o ft_strtrim.o ft_strsplit.o ft_itoa.o ft_strrev.o \
+		ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o \
+		ft_lstmap.o ft_iswsp.o ft_count_words.o ft_swap.o ft_strclen.o \
+		ft_strndup.o ft_strcdup.o ft_strnlen.o get_next_line.o \
+		ft_intsplitstr.o ft_putdbl.o ft_count_lines.o ft_line_len.o
 
-PRINTFDIR = srcs/utils
-SRCDIR = srcs
-OBJDIR = objs
 
-OBJS = $(addprefix $(OBJDIR)/, $(OBJ))
-OBJSPRINTF = $(addprefix $(OBJDIR)/, $(OBJPRINTF))
-HEADER = -I ./includes
+INCLUDES=./
 
-CC = gcc
-CFLAGS = -c -Werror -Wextra -Wall
-
-NAME = libftprintf.a
+.PHONY: clean fclean all re
 
 all: $(NAME)
 
-$(OBJDIR)/%.o: $(PRINTFDIR)/%.c
-	@$(CC) $(CFLAGS) $(HEADER) $< -o $@
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c 
-	@/bin/mkdir -p $(OBJDIR)
-	@$(CC) $(CFLAGS) $(HEADER) $< -o $@
-
-$(NAME): $(OBJS) $(OBJSPRINTF)
-	@ar rcs $@ $^
-	@ranlib $@
+$(NAME): $(SRCS) libft.h
+	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
+	@ar rc $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
 
 clean:
-	rm -rf $(OBJDIR)
+	@/bin/rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

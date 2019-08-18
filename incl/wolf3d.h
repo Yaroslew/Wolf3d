@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 16:51:03 by tglandai          #+#    #+#             */
-/*   Updated: 2019/08/18 14:18:05 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/08/18 16:32:15 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,20 @@
 
 typedef struct	s_wolf3d
 {
-
+    char        *map_name;
+    void        *mlx;
+    void        *win;
+    void        *img;
+    void        *img_ptr;
+    int         **map;
+    int         nb_lines;
+    int         len_line;
+    
+    
 }				t_wolf3d;
+
+void	        mlx_win_init(t_wolf3d *w);
+int     		ft_close(void);
+int     		read_map(t_wolf3d *w, char **av);
 
 #endif

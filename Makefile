@@ -6,14 +6,16 @@
 #    By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/08 11:40:58 by tjuana            #+#    #+#              #
-#    Updated: 2019/08/14 14:47:50 by tjuana           ###   ########.fr        #
+#    Updated: 2019/08/18 15:04:34 by tjuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= wolf3d
 
 # src / obj files
-SRC		= main.c 
+SRC		=	main.c \
+			read_map.c \
+			
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -29,7 +31,7 @@ MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit
 
 # ft library
 FT		= ./libft/
-FT_LIB	= $(addprefix $(FT),libft.a)
+FT_LIB	= $(addprefix $(FT),libftprintf.a)
 FT_INC	= -I ./libft/includes
 FT_LNK	= -L ./libft -l ft
 
