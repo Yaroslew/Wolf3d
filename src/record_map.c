@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 15:02:26 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 16:43:07 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/08/18 18:43:41 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	record_map(char *str, t_base *base)
 	{
 		while (line[q])
 		{
+			if (line[q] == 'z')
+				init_hero(base, q, y);
 			base->map[r].x = q;
 			base->map[r].y = y;
 			base->map[r].data = line[q];

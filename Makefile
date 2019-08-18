@@ -8,6 +8,7 @@ SRC =   ./src/main.c\
 		./src/check.c\
 		./src/init.c\
 		./src/record_map.c\
+		./src/ray_casting.c\
 
 
 OBJ = $(SRC:.c=.o)
