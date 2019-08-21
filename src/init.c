@@ -39,3 +39,15 @@ void	init_hero(t_base *base, int q, int y)
 	base->hero->angle_vector = 0.785398;
 
 }
+
+void	init_mlx(t_base *base)
+{
+	int bits;
+	int size;
+	int endian;
+
+	base->mlx_ptr = mlx_init();
+	base->win_ptr = mlx_new_window(base->mlx_ptr, 320, 200, "Wolf3d");
+	base->img_ptr = mlx_new_image(base->mlx_ptr, 320, 200);
+	base->img_data = (int*)mlx_get_data_addr(base->img_ptr, &bits, &size, &endian);
+}
