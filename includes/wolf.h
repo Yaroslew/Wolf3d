@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 17:55:23 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/08/18 21:18:08 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../libft/includes/get_next_line.h"
 # include "mlx.h"
 # include <stdlib.h>
-# include <math.h>
+# include <math.h> //https://permadi.com/1996/05/ray-casting-tutorial-14/
 # include <sys/stat.h>
 # include <fcntl.h>
 
@@ -32,6 +32,15 @@ typedef struct s_hero
 
 }				t_hero;
 
+typedef struct	s_dist
+{
+	int			ay;
+	int			ax;
+	int			Ya;
+	int			Xa;
+
+}				t_dist;
+
 typedef struct s_map
 {
 	int			x;
@@ -45,6 +54,8 @@ typedef struct	s_base
 	int			height;
 	t_map		*map;
 	t_hero		*hero;
+	t_dist		*dist;
+	int			distance;
 
 	int			w_map;
 	int			h_map;
@@ -59,6 +70,7 @@ void			record_map(char *str, t_base *base);
 void			init_hero(t_base *base, int q, int y);
 void			ray_casting(t_base *base);
 void			distance(t_base *base);
+int				check_walls(t_base *base, int x, int y);
 
 
 

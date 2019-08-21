@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:51:37 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 19:09:44 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/08/18 21:29:06 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,37 @@ void	ray_casting(t_base *base)
 
 void	distance(t_base *base)
 {
-	int ay;
-	int ax;
-	int ya;
-	int xa;
+	if (!(base->dist = malloc(sizeof(t_dist) * 1)))
+		mess_err(0);
 
 	if (base->hero->angle_vector > 0 && base->hero->angle_vector < 3.14159)
 	{
-		ay = (base->hero->y / 64) * 64 - 1;
-		ay /= 64;
+		base->dist->ay = ((base->hero->y / 64) * 64 - 1) - 0.5;
+		base->dist->Ya = -64;
 	}
 	else
 	{
-		ay = (base->hero->y / 64) * 64 + 64 + 0.5;
+		base->dist->ay = ((base->hero->y / 64) * 64 + 64) - 0.5;
+		base->dist->Ya = 64;
 	}
-	ax = (base->hero->x + (base->hero->y - ay)) / tan(1.0472); //неправильно считаю координаты игрока (init_hero)?
-	ax /= 64;
-	ft_printf("x=%d y=%d\n", ax, ay);
-
-	// ошибка (по оси x) при наличии игрока в нижнем правом углу, показывает ближайший квадрат не над ним, а правее на 2.
-//	if (base->hero->angle_vector > 0 && base->hero->angle_vector < 3.14159)
-//		ya = -64;
-//	else
-//		ya = 64;
-//	xa = 64 / tan(1.0472);
+	base->dist->ax = (base->hero->x + (base->hero->y - base->dist->ay) / tan(base->hero->fov));
+	base->dist->Xa = 64 / tan(base->hero->fov);
+	if (check_walls(base, base->dist->ax / 64, base->dist->ax /64))
+		return;
+	while (!(check_walls(base, base->dist->ax / 64, base->dist->ay /64)))
+	{
+		base->dist->ax = (base->dist->ax + base->dist->Xa);
+		base->dist->ay = (base->dist->ay + base->dist->Ya);
+	}
+	free(base->dist);
+	return;
 }
 
-void	check_walls(t_base *base, int ax, int ay)
+int		check_walls(t_base *base, int x, int y)
 {
-
+	if (base->map[x + (y * base->w_map)].data == 'x')
+		base->distance = ABS(base->hero->y - base->dist->ay) / sin(base->hero->fov); //странные расхождения при синусе.косинусе
+	else
+		return (0);
+	return (1);
 }

@@ -34,8 +34,8 @@ void	init_hero(t_base *base, int q, int y)
 
 	base->hero->fov = 1.0472;
 	base->hero->h_man = 32;
-	base->hero->x = q * 64;
-	base->hero->y = y * 64;
+	base->hero->x = (q * 64) + 32;
+	base->hero->y = (y * 64) + 32;
 	base->hero->angle_vector = 0.785398;
 
 }
