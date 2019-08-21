@@ -56,7 +56,9 @@ typedef struct	s_base
 	t_hero		*hero;
 	t_dist		*dist;
 	int			distance;
-
+	double		h_distance[320];
+	double		h_wall[320];
+	double		aqua;
 	int			w_map;
 	int			h_map;
 
@@ -71,6 +73,7 @@ void			init_hero(t_base *base, int q, int y);
 void			ray_casting(t_base *base);
 void			distance(t_base *base);
 int				check_walls(t_base *base, int x, int y);
+void			height_wall(t_base *base);
 
 
 
