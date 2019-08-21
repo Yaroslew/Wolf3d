@@ -17,12 +17,6 @@ void	ray_casting(t_base *base)
 	distance(base);
 	height_wall(base);
 
-	int q = 0;
-//	while (q < 320)
-//	{
-//		ft_printf("%f\n", base->h_wall[q]);
-//		q++;
-//	}
 }
 
 void	height_wall(t_base *base)
@@ -43,7 +37,7 @@ void	height_wall(t_base *base)
 	q = 0;
 	while (q < 320)
 	{
-		base->h_wall[q] = 64.0 / base->h_distance[q];
+		base->h_wall[q] = 64.0 / base->h_distance[q] * 277.0;
 		q++;
 	}
 }

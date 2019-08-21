@@ -57,7 +57,7 @@ typedef struct	s_base
 	t_dist		*dist;
 	int			distance;
 	double		h_distance[320];
-	double		h_wall[320];
+	int			h_wall[320];
 	double		aqua;
 	int			w_map;
 	int			h_map;
