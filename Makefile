@@ -6,7 +6,7 @@
 #    By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/08 11:40:58 by tjuana            #+#    #+#              #
-#    Updated: 2019/08/18 17:24:19 by tjuana           ###   ########.fr        #
+#    Updated: 2019/09/02 15:10:28 by tjuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	= wolf3d
 # src / obj files
 SRC		=	main.c \
 			read_map.c \
-			draw.c
+			draw.c \
+			ray_casting.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
