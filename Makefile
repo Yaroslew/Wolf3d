@@ -6,7 +6,7 @@
 #    By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/08 11:40:58 by tjuana            #+#    #+#              #
-#    Updated: 2019/09/02 15:10:28 by tjuana           ###   ########.fr        #
+#    Updated: 2019/09/18 17:45:08 by tjuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ NAME	= wolf3d
 SRC		=	main.c \
 			read_map.c \
 			draw.c \
-			ray_casting.c
+			ray_casting.c \
+			mlx_hook.c \
+			hud.c \
+			textures.c
+		
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -38,7 +42,7 @@ FT_LNK	= -L ./libft -l ft
 
 # directories
 SRCDIR	= ./src/
-INCDIR	= ./incl/
+INCDIR	= ./includes/
 OBJDIR	= ./obj/
 
 # colors

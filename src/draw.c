@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:30:10 by tjuana            #+#    #+#             */
-/*   Updated: 2019/09/02 16:19:07 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/18 17:32:47 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ void	draw_sky(t_wolf3d *w)
 			ft_memcpy(w->img_ptr + 4 * WINX * w->y_text + w->x_text * 4,\
 			&w->tex[6].data[w->y_text % 512 * w->tex[6].sizeline +\
 			w->x_text % 512 * w->tex[6].bpp / 8], sizeof(int));
+			w->y_text++;
+		}
+		w->x_text++;
+	}
+}
+
+void	draw_floor(t_wolf3d *w)
+{
+	w->x_text = 0;
+	while (w->x_text < WINX)
+	{
+		w->y_text = WINY / 2;
+		while (w->y_text < WINY)
+		{
+			ft_memcpy(w->img_ptr + 4 * WINX * w->y_text + w->x_text * 4,
+					&w->tex[5].data[w->y_text % 64 * w->tex[5].sizeline +
+					w->x_text % 64 * w->tex[5].bpp / 8], sizeof(int));
 			w->y_text++;
 		}
 		w->x_text++;

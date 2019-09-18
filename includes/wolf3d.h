@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 16:51:03 by tglandai          #+#    #+#             */
-/*   Updated: 2019/09/02 16:26:08 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/18 17:46:47 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ typedef struct	s_wolf3d
 	double		move_down;
 	double		move_right;
 	double		move_left;
+	double		x_olddir;
+	double		x_oldplane;
+	int			help;
 	int			lineheight;
 	int			sl;
 	int			start;
@@ -98,14 +101,27 @@ int				check_side(t_wolf3d *w);
 int				second_read(t_wolf3d *w, char **av);
 int				check_map(char *buff, t_wolf3d *w);
 void			wolf3d_init(t_wolf3d *w);
-void			ft_display_map(t_wolf3d *map);
+
 void			put_pxl_to_img(t_wolf3d *w, int x, int y, int color);
 void			draw_sky(t_wolf3d *w);
+
 void			ray_casting(t_wolf3d *w);
 void			dda_init(t_wolf3d *t);
 void			dda(t_wolf3d *t);
 void			ray_casting_init(t_wolf3d *w, int x);
+
 void			floor_and_ceiling(t_wolf3d *t, int x);
 void			draw_wall(int x, int start, int end, t_wolf3d *w);
+void			draw_floor(t_wolf3d *w);
+
+int				move(t_wolf3d *t);
+void			move_side(t_wolf3d *t);
+int			 	key_release(int keycode, t_wolf3d *t);
+int				key_press(int keycode, t_wolf3d *t);
+int				key_press2(int keycode, t_wolf3d *t);
+
+void			help_text(t_wolf3d *t);
+void			load_textures(t_wolf3d *t);
+void			load_textures2(t_wolf3d *t, int a, int b);
 
 #endif

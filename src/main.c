@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/09/02 15:13:09 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/18 17:51:26 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	mlx_win_init(t_wolf3d *w)
 	w->mlx = mlx_init();
 	w->win = mlx_new_window(w->mlx, WINX, WINY, title);
 	ft_strdel(&title);
+	title = NULL;
 }
 
 void	wolf3d_init(t_wolf3d *w)
@@ -44,27 +45,8 @@ void	wolf3d_init(t_wolf3d *w)
 	w->move_right = 0;
 	w->x_text = 0;
 	w->y_text = 0;
-	w->texture = 1;
-}
-
-void			ft_display_map(t_wolf3d *map)
-{
-	int	i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (map->map[i])
-	{
-		j = 0;
-		while (j < map->len_line)
-		{
-			ft_putnbr(map->map[i][j++]);
-			(j < map->len_line) ? ft_putchar('\t') : 0;
-		}
-		ft_putchar('\n');
-		i++;
-	}
+	w->texture = 0;
+	load_textures(w);
 }
 
 int		main(int ac, char **av)
@@ -81,11 +63,13 @@ int		main(int ac, char **av)
 	if (!(read_map(w, av)))
 		return (0);
 	mlx_win_init(w);
-	wolf3d_init(w);
-	ray_casting(w);
 	mlx_hook(w->win, 17, 0L, ft_close, w);
-		
-	//ft_display_map(w);
-	//mlx_loop_hook(w->mlx, move, w);
+	mlx_hook(w->win, 2, (1L << 0), key_press, w);
+	mlx_hook(w->win, 3, (1L << 1), key_release, w);
+	w->help = 1;
+	wolf3d_init(w);
+	ray_casting(w);	
+
+	mlx_loop_hook(w->mlx, move, w);
 	mlx_loop(w->mlx);
 }
