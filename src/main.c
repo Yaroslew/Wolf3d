@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/09/18 17:51:26 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/18 18:06:36 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wolf3d_init(t_wolf3d *w)
 	w->x_text = 0;
 	w->y_text = 0;
 	w->texture = 0;
-	load_textures(w);
+	//load_textures(w);
 }
 
 int		main(int ac, char **av)

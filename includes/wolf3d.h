@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 16:51:03 by tglandai          #+#    #+#             */
-/*   Updated: 2019/09/18 17:46:47 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/18 18:06:59 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int				key_press(int keycode, t_wolf3d *t);
 int				key_press2(int keycode, t_wolf3d *t);
 
 void			help_text(t_wolf3d *t);
-void			load_textures(t_wolf3d *t);
-void			load_textures2(t_wolf3d *t, int a, int b);
+//void			load_textures(t_wolf3d *t);
+//void			load_textures2(t_wolf3d *t, int a, int b);
 
 #endif

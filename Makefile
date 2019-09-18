@@ -6,7 +6,7 @@
 #    By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/08 11:40:58 by tjuana            #+#    #+#              #
-#    Updated: 2019/09/18 17:45:08 by tjuana           ###   ########.fr        #
+#    Updated: 2019/09/18 18:06:15 by tjuana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ SRC		=	main.c \
 			ray_casting.c \
 			mlx_hook.c \
 			hud.c \
-			textures.c
-		
+					
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
