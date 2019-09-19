@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:16:59 by tjuana            #+#    #+#             */
-/*   Updated: 2019/09/18 18:06:36 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:42:33 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int		main(int ac, char **av)
 	mlx_hook(w->win, 3, (1L << 1), key_release, w);
 	w->help = 1;
 	wolf3d_init(w);
-	ray_casting(w);	
-
+	ray_casting(w);
 	mlx_loop_hook(w->mlx, move, w);
 	mlx_loop(w->mlx);
 }

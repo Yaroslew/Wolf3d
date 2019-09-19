@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 12:30:10 by tjuana            #+#    #+#             */
-/*   Updated: 2019/09/18 17:32:47 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:21:18 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_wall(int x, int start, int end, t_wolf3d *w)
 		w->id = w->map[w->x_map][w->y_map];
 		if (w->side == 0)
 			w->x_wall = w->y_rayp + w->walldist * w->y_raydir;
-		else 
+		else
 			w->x_wall = w->x_rayp + w->walldist * w->x_raydir;
 		w->x_text = (int)(w->x_wall * (double)(64));
 		if (w->side == 0 && w->x_raydir > 0)

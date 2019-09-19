@@ -9,13 +9,14 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/wolf3d",
-            "args": ["/Users/tjuana/42/wolf/maps/map2"],
+            "args": ["${workspaceRoot}/maps/map"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+			"cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "gcc build active file"
+			"preLaunchTask": "gcc build active file"
+			
         }
     ]
 }

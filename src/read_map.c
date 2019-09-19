@@ -6,13 +6,13 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:44:46 by tjuana            #+#    #+#             */
-/*   Updated: 2019/08/18 17:33:45 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/19 17:18:04 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		check_map(char *buff, t_wolf3d *w)
+int			check_map(char *buff, t_wolf3d *w)
 {
 	int		i;
 	int		len;
@@ -37,7 +37,7 @@ int		check_map(char *buff, t_wolf3d *w)
 	return (1);
 }
 
-int		second_read(t_wolf3d *w, char **av)
+int			second_read(t_wolf3d *w, char **av)
 {
 	int		i;
 	int		j;
@@ -66,9 +66,9 @@ int		second_read(t_wolf3d *w, char **av)
 	return (1);
 }
 
-int		check_side(t_wolf3d *w)
+int			check_side(t_wolf3d *w)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < w->len_line)
@@ -93,15 +93,13 @@ int		check_side(t_wolf3d *w)
 	return (1);
 }
 
-int		read_map(t_wolf3d *w, char **av)
+static int	errors(int fd, t_wolf3d *w, char **av)
 {
-	int		fd;
 	char	*buff;
 	int		i;
 
 	i = 0;
 	buff = ft_strnew(65536);
-	fd = open(av[1], O_RDONLY);
 	if (fd < 0 || (read(fd, buff, 65536)) < 1)
 	{
 		ft_putstr("wolf3d: ");
@@ -120,6 +118,20 @@ int		read_map(t_wolf3d *w, char **av)
 			w->len_line--;
 		i++;
 	}
+	return (1);
+}
+
+int			read_map(t_wolf3d *w, char **av)
+{
+	int		fd;
+	char	*buff;
+	int		i;
+
+	i = 0;
+	buff = ft_strnew(65536);
+	fd = open(av[1], O_RDONLY);
+	if (!errors(fd, w, av))
+		return (0);
 	ft_strdel(&buff);
 	w->map_name = av[1];
 	close(fd);

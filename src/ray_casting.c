@@ -6,7 +6,7 @@
 /*   By: tjuana <tjuana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 13:49:39 by tglandai          #+#    #+#             */
-/*   Updated: 2019/09/18 18:00:09 by tjuana           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:44:51 by tjuana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,20 @@ void	ray_casting_init(t_wolf3d *t, int x)
 
 void	floor_and_ceiling(t_wolf3d *t, int x)
 {
-if (t->texture == 0){
-	if (t->start > 0)
+	if (t->texture == 0)
 	{
-		t->color = 0x4682b4;
-		t->y = -1;
-		if (x < WINX && t->y < WINY)
-			while (++t->y < t->start)
-			{
-				ft_memcpy(t->img_ptr + 4 * WINX * t->y + x * 4,
-						&t->color, sizeof(int));
-			}
+		if (t->start > 0)
+		{
+			t->color = 0x4682b4;
+			t->y = -1;
+			if (x < WINX && t->y < WINY)
+				while (++t->y < t->start)
+				{
+					ft_memcpy(t->img_ptr + 4 * WINX * t->y + x * 4,
+							&t->color, sizeof(int));
+				}
+		}
 	}
-}
 	if (t->end > 0)
 	{
 		t->color = 0x333333;
@@ -129,7 +130,7 @@ void	ray_casting(t_wolf3d *t)
 		else
 			t->color = 0x2e8b57;
 		draw_wall(t->x, t->start - 1, t->end, t);
-		// if (t->texture == 0)
+		if (t->texture == 0)
 			floor_and_ceiling(t, t->x);
 	}
 	mlx_put_image_to_window(t->mlx, t->win, t->img, 0, 0);
