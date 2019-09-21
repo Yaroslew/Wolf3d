@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 21:18:08 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/17 22:33:21 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "../libft/includes/libft.h"
 # include "../libft/includes/get_next_line.h"
-# include "mlx.h"
 # include <stdlib.h>
 # include <math.h> //https://permadi.com/1996/05/ray-casting-tutorial-14/
 # include <sys/stat.h>
 # include <fcntl.h>
+#include "/Users/pcorlys-/Library/Frameworks/SDL2.framework/Headers/SDL.h"
 
 typedef struct s_hero
 {
@@ -48,24 +48,37 @@ typedef struct s_map
 	char		data;
 }				t_map;
 
+typedef struct	s_sdl
+{
+	SDL_Window		*window;
+	SDL_Surface		*screen_surface;
+	SDL_Event		event;
+	SDL_Renderer	*ren;
+
+	SDL_Surface		*temp;
+	SDL_Texture		*background;
+	SDL_Texture		*wall;
+	SDL_Rect		back_rect;
+	SDL_Rect		wall_rect;
+
+}				t_sdl;
+
 typedef struct	s_base
 {
 	int			width;
 	int			height;
+
 	t_map		*map;
 	t_hero		*hero;
 	t_dist		*dist;
+	t_sdl		*sdl;
+
 	int			distance;
 	double		h_distance[320];
 	int			h_wall[320];
 	double		aqua;
 	int			w_map;
 	int			h_map;
-
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
-	int			*img_data;
 
 }t_base;
 
@@ -78,8 +91,11 @@ void			ray_casting(t_base *base);
 void			distance(t_base *base);
 int				check_walls(t_base *base, int x, int y);
 void			height_wall(t_base *base);
-void			init_mlx(t_base *base);
 void			draw_wall(t_base *base);
+
+void			init_sdl(t_base *base);
+void			esc(int a);
+void			handler(t_base *base);
 
 
 
