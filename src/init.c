@@ -50,10 +50,8 @@ void	init_sdl(t_base *base)
 	base->sdl->window = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, base->width, base->height, SDL_WINDOW_SHOWN);
 	if (base->sdl->window == NULL)
 		mess_err(8);
-	base->sdl->screen_surface = SDL_GetWindowSurface(base->sdl->window);
-	if (base->sdl->screen_surface == NULL)
-		mess_err(7);
-	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, 0);
 	if (base->sdl->ren == NULL)
 		mess_err(9);
 
