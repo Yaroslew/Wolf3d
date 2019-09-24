@@ -21,60 +21,78 @@ void	ray_casting(t_base *base)
 
 void	height_wall(t_base *base)
 {
-	int q;
-	double temp;
 
-	q = 0;
-	base->aqua = (60.0 / 320.0) * M_PI/180.0;
-	temp = base->aqua * 160.0;
-
-	while (q < 320)
-	{
-		base->h_distance[q] = base->distance * cos(temp);
-		temp -= base->aqua;
-		q++;
-	}
-	q = 0;
-	while (q < 320)
-	{
-		base->h_wall[q] = 64.0 / base->h_distance[q] * 277.0;
-		q++;
-	}
 }
 
 void	distance(t_base *base)
 {
-	if (!(base->dist = malloc(sizeof(t_dist) * 1)))
-		mess_err(0);
+	int q;
 
-	if (base->hero->angle_vector > 0 && base->hero->angle_vector < 3.14159)
+	q = 0;
+	while (q < base->width)
 	{
-		base->dist->ay = ((base->hero->y / 64) * 64 - 1) - 0.5;
-		base->dist->Ya = -64;
+		base->dist->x_camera = (2 * q) / (base->width - 1);
+		base->dist->x_raydir = base->hero->x_dir + base->dist->x_plane * base->dist->x_camera;
+		base->dist->y_raydir = base->hero->y_dir + base->dist->y_plane * base->dist->x_camera;
+		base->dist->x_deltadist = fabs(1 / base->dist->x_raydir);
+		base->dist->y_deltadist = fabs(1 / base->dist->y_raydir);
+
+		if (base->dist->x_raydir < 0)
+		{
+			base->hero->x_step = -1;
+			base->dist->x_sidedist = (base->hero->x - base->dist->x_map) * base->dist->x_deltadist;
+		}
+		else
+		{
+			base->hero->x_step = 1;
+			base->dist->x_sidedist = (base->dist->x_map + 1.0 - base->hero->x) * base->dist->x_deltadist;
+		}
+		if (base->dist->y_raydir < 0)
+		{
+			base->hero->y_step = -1;
+			base->dist->y_sidedist = (base->hero->y - base->dist->y_map) * base->dist->y_deltadist;
+		}
+		else
+		{
+			base->hero->y_step = 1;
+			base->dist->y_sidedist = (base->dist->y_map + 1.0 - base->hero->y) * base->dist->y_deltadist;
+		}
+			// DDA
+		while (base->hero->hit == 0)
+		{
+			if (base->dist->x_sidedist < base->dist->y_sidedist)
+			{
+				base->dist->x_sidedist += base->dist->x_deltadist;
+				base->dist->x_map +=base->hero->x_step;
+				base->hero->side = 0;
+			}
+			else
+			{
+				base->dist->y_sidedist += base->dist->y_deltadist;
+				base->dist->y_map += base->hero->y_step;
+				base->hero->side = 1;
+			}
+			if (base->map[base->dist->y_map * base->h_map + base->dist->x_map].data == 'x' )
+				base->hero->hit = 1;
+		}
+		if (base->hero->side == 0)
+			base->dist->walldist = (base->dist->x_map - base->hero->x + (1 - base->hero->x_step) / 2) / base->dist->x_raydir;
+		else
+			base->dist->walldist = (base->dist->y_map - base->hero->y + (1 - base->hero->y_step) / 2) / base->dist->y_raydir;
+		base->line_height[q] = (int) (base->height / base->dist->walldist);
+
+
+		ft_printf("%d  wall=%d\n", base->height, base->dist->walldist);
+		base->start_draw[q] = -base->line_height[q] / 2 + base->height / 2;
+		if (base->start_draw[q] < 0)
+			base->start_draw[q] = 0;
+		base->end_draw[q] = base->line_height[q] / 2 + base->height / 2;
+		if (base->end_draw[q] >= base->height)
+			base->end_draw[q] = base->height - 1;
+	//	ft_printf("start=%d  end=%d  |%d  |line=%d\n", base->start_draw[q], base->end_draw[q], q, base->line_height[q]);
+		q++;
 	}
-	else
-	{
-		base->dist->ay = ((base->hero->y / 64) * 64 + 64) - 0.5;
-		base->dist->Ya = 64;
-	}
-	base->dist->ax = (base->hero->x + (base->hero->y - base->dist->ay) / tan(base->hero->fov));
-	base->dist->Xa = 64 / tan(base->hero->fov);
-	if (check_walls(base, base->dist->ax / 64, base->dist->ax /64))
-		return;
-	while (!(check_walls(base, base->dist->ax / 64, base->dist->ay /64)))
-	{
-		base->dist->ax = (base->dist->ax + base->dist->Xa);
-		base->dist->ay = (base->dist->ay + base->dist->Ya);
-	}
-	free(base->dist);
+
+
 	return;
-}
-
-int		check_walls(t_base *base, int x, int y)
-{
-	if (base->map[x + (y * base->w_map)].data == 'x')
-		base->distance = ABS(base->hero->y - base->dist->ay) / sin(base->hero->fov); //странные расхождения при синусе.косинусе
-	else
-		return (0);
-	return (1);
 }

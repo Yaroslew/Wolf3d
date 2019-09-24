@@ -22,7 +22,8 @@ int main(int ac, char **av)
 	check_map(av[1], base);
 	record_map(av[1], base);
 	ray_casting(base);
-//	draw_wall(base);
+
+	draw_wall(base);
 	handler(base);
 	return (0);
 }

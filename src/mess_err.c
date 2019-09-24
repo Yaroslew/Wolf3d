@@ -36,7 +36,7 @@ void	mess_err(int num)
 	if (num == 9)
 		ft_printf("SDL рендер - не был инициализирован\n");
 	if (num == 10)
-		ft_printf("Картинка не была загружена\n");
+		ft_printf("Картинка не была загружена на плоскость\n");
 	if (num == 11)
 		ft_printf("Текстура не была создана\n");
 	exit(0);

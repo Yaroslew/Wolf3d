@@ -23,21 +23,35 @@
 
 typedef struct s_hero
 {
-	int			x;
-	int			y;
-	double		angle_vector;
+	double		x;
+	double 		y;
+	double 		x_dir;
+	double 		y_dir;
 	double 		fov;
-	int			h_man;
-	int			distance;
+	int			x_step;
+	int			y_step;
+	int			hit;
+	int			side;
 
 }				t_hero;
 
 typedef struct	s_dist
 {
-	int			ay;
-	int			ax;
-	int			Ya;
-	int			Xa;
+	double 		x_plane;
+	double 		y_plane;
+	double 		time;
+	double 		time_old;
+	double 		x_camera;
+	double 		x_raydir;
+	double 		y_raydir;
+
+	int			x_map;
+	int			y_map;
+	double 		x_sidedist;
+	double 		y_sidedist;
+	double 		x_deltadist;
+	double 		y_deltadist;
+	double 		walldist;
 
 }				t_dist;
 
@@ -51,15 +65,16 @@ typedef struct s_map
 typedef struct	s_sdl
 {
 	SDL_Window		*window;
-	SDL_Surface		*screen_surface;
 	SDL_Event		event;
 	SDL_Renderer	*ren;
 
-	SDL_Surface		*temp;
-	SDL_Texture		*background;
-	SDL_Texture		*wall;
-	SDL_Rect		back_rect;
-	SDL_Rect		wall_rect;
+	SDL_Texture		*texture;
+
+//	SDL_Surface		*wall_n;
+//	SDL_Surface		*wall_w;
+//	SDL_Surface		*wall_e;
+	SDL_Surface		*wall_s;
+	SDL_Color		buf[1000000];
 
 }				t_sdl;
 
@@ -67,18 +82,17 @@ typedef struct	s_base
 {
 	int			width;
 	int			height;
+	int			w_map;
+	int			h_map;
 
 	t_map		*map;
 	t_hero		*hero;
 	t_dist		*dist;
 	t_sdl		*sdl;
 
-	int			distance;
-	double		h_distance[320];
-	int			h_wall[320];
-	double		aqua;
-	int			w_map;
-	int			h_map;
+	int			line_height[1000];
+	int			start_draw[1000];
+	int			end_draw[1000];
 
 }t_base;
 

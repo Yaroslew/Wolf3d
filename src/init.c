@@ -12,6 +12,28 @@
 
 #include "../includes/wolf.h"
 
+static void	init_dist(t_base *base)
+{
+	base->dist->time = 0;
+	base->dist->time_old = 0;
+	base->dist->x_plane = 0;
+	base->dist->y_plane = 0.66;
+	base->dist->x_camera = 0;
+	base->dist->x_raydir = 0;
+	base->dist->y_raydir = 0;
+}
+
+void	init_hero(t_base *base, int q, int y)
+{
+	base->hero->fov = 1.15192;
+	base->hero->x = q ;
+	base->hero->y = y ;
+	base->hero->x_dir = -1;
+	base->hero->y_dir = 0;
+	base->hero->side = 0;
+	base->hero->hit = 0;
+}
+
 t_base *init_base(void)
 {
 	t_base *base;
@@ -22,28 +44,22 @@ t_base *init_base(void)
 		mess_err(0);
 	if (!(base->sdl = malloc(sizeof(t_sdl) * 1)))
 		mess_err(0);
+	if (!(base->dist = malloc(sizeof(t_dist) * 1)))
+		mess_err(0);
 	base->width = 1000;
 	base->height = 1000;
 	base->w_map = 20;
 	base->h_map = 20;
 	init_sdl(base);
+	init_dist(base);
 	return (base);
 }
 
-void	init_hero(t_base *base, int q, int y)
-{
-	base->hero->fov = 1.0472;
-	base->hero->h_man = 32;
-	base->hero->x = (q * 64) + 32;
-	base->hero->y = (y * 64) + 32;
-	base->hero->angle_vector = 0.785398;
-}
+
 
 void	init_sdl(t_base *base)
 {
 //  Инициализация окна и рендера
-	base->sdl->window = NULL;
-	base->sdl->screen_surface = NULL;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		mess_err(7);
@@ -54,42 +70,10 @@ void	init_sdl(t_base *base)
 	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, 0);
 	if (base->sdl->ren == NULL)
 		mess_err(9);
-
-//    Загрузка текстур
-	base->sdl->temp = SDL_LoadBMP("/img/wall.bmp");
-	if (base->sdl->temp == NULL)
+	base->sdl->wall_s = SDL_LoadBMP("/img/wall.bmp");
+	if (!base->sdl->wall_s)
 		mess_err(10);
-	base->sdl->wall = SDL_CreateTextureFromSurface(base->sdl->ren, base->sdl->temp);
-	if (base->sdl->wall == NULL)
-		mess_err(11);
-	SDL_FreeSurface(base->sdl->temp);
-	SDL_RenderClear(base->sdl->ren);
+	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
 
-	base->sdl->temp = SDL_LoadBMP("/img/back.bmp");
-	if (base->sdl->temp == NULL)
-		mess_err(10);
-	base->sdl->background = SDL_CreateTextureFromSurface(base->sdl->ren, base->sdl->temp);
-	if (base->sdl->background == NULL)
-		mess_err(11);
-	SDL_FreeSurface(base->sdl->temp);
-	SDL_RenderClear(base->sdl->ren);
-
-//	Параметры текстур
-
-	base->sdl->back_rect.h = base->height;
-	base->sdl->back_rect.w = base->width;
-	base->sdl->back_rect.x = 0;
-	base->sdl->back_rect.y = 0;
-
-	base->sdl->wall_rect.h = 64;
-	base->sdl->wall_rect.w = 64;
-	base->sdl->wall_rect.x = 0;
-	base->sdl->wall_rect.y = 0;
-
-// Загрузка на экран
-
-	SDL_RenderCopy(base->sdl->ren, base->sdl->background, NULL, &base->sdl->back_rect);
-	SDL_RenderCopy(base->sdl->ren, base->sdl->wall, NULL, &base->sdl->wall_rect);
-	SDL_RenderPresent(base->sdl->ren);
 }
 
