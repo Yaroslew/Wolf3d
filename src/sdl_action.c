@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/17 22:33:21 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/25 00:08:48 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ void	handler(t_base *base)
 		{
 			if (base->sdl->event.type == SDL_QUIT)
 				esc(1);
+			if (base->sdl->event.type == SDL_KEYDOWN)
+			{
+				if (base->sdl->event.key.keysym.sym == SDLK_ESCAPE)
+					esc(1);
+				if (base->sdl->event.key.keysym.sym == SDLK_UP)
+					move_hero(base, 1);
+				if (base->sdl->event.key.keysym.sym == SDLK_DOWN)
+					move_hero(base, 2);
+			}
 		}
 	}
 }

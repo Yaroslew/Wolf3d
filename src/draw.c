@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/08 13:13:38 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 21:11:48 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static	SDL_Color	get_color(SDL_Surface *wall, int x, int y)
 {
 	uint8_t	*color;
+	x = 1;
+	y = 1;
 	color = wall->pixels + wall->pitch * y + wall->format->BytesPerPixel * x;
 	return ((SDL_Color){color[0], color[1], color[2], color[3]});
 
@@ -34,7 +36,7 @@ void	draw_wall(t_base *base)
 			if (q > base->start_draw[line] && q < base->end_draw[line])
 			{
 				base->sdl->buf[base->width * q + line] = get_color(base->sdl->wall_s, q * base->width, q);
-				ft_printf("!!!\n");
+
 			}
 
 			q++;
@@ -46,4 +48,16 @@ void	draw_wall(t_base *base)
 	SDL_UpdateTexture(base->sdl->texture, NULL, base->sdl->buf, base->width * 4);
 	SDL_RenderCopy(base->sdl->ren, base->sdl->texture, NULL, NULL);
 	SDL_RenderPresent(base->sdl->ren);
+}
+
+void		frames(t_base *base)
+{
+	base->time->old_time = base->time->time;
+	base->time->time = SDL_GetTicks();
+	base->time->frame_time = (base->time->time - base->time->old_time) / 1000.0;
+	clear_sdl_buf(base);
+	draw_wall(base);
+	clear_sdl_buf(base);
+	base->time->move_speed = base->time->frame_time * 5.0;
+	base->time->rot_speed = base->time->frame_time * 3.0;
 }

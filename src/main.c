@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:21 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/18 00:11:18 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:30:16 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int main(int ac, char **av)
 	base = init_base();
 	check_map(av[1], base);
 	record_map(av[1], base);
-	ray_casting(base);
 
-	draw_wall(base);
+
+	ray_casting(base);
 	handler(base);
 	return (0);
 }

@@ -16,6 +16,8 @@ SRC =   ./src/main.c\
  		./src/ray_casting.c\
  		./src/draw.c\
  		./src/sdl_action.c\
+ 		./src/move.c\
+ 		./src/clear.c\
 
 
 OBJ = $(SRC:.c=.o)

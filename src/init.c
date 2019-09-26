@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/18 00:09:46 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:37:08 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,19 @@ static void	init_dist(t_base *base)
 
 void	init_hero(t_base *base, int q, int y)
 {
-	base->hero->fov = 1.15192;
-	base->hero->x = q ;
-	base->hero->y = y ;
+	//base->hero->fov = 1.15192;
+	base->hero->x = q;
+	base->hero->y = y;
 	base->hero->x_dir = -1;
 	base->hero->y_dir = 0;
 	base->hero->side = 0;
 	base->hero->hit = 0;
+}
+
+void	init_time(t_base *base)
+{
+	base->time->time = 0;
+	base->time->old_time = 0;
 }
 
 t_base *init_base(void)
@@ -46,12 +52,15 @@ t_base *init_base(void)
 		mess_err(0);
 	if (!(base->dist = malloc(sizeof(t_dist) * 1)))
 		mess_err(0);
+	if (!(base->time = malloc(sizeof(t_time) * 1)))
+		mess_err(0);
 	base->width = 1000;
 	base->height = 1000;
 	base->w_map = 20;
 	base->h_map = 20;
 	init_sdl(base);
 	init_dist(base);
+	init_time(base);
 	return (base);
 }
 

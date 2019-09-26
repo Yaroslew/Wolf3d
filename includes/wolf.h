@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/17 22:33:21 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:44:42 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_hero
 	double 		y;
 	double 		x_dir;
 	double 		y_dir;
-	double 		fov;
 	int			x_step;
 	int			y_step;
 	int			hit;
@@ -62,6 +61,16 @@ typedef struct s_map
 	char		data;
 }				t_map;
 
+typedef	struct s_time
+{
+	double		time;
+	double 		old_time;
+	double 		frame_time;
+	double 		move_speed;
+	double 		rot_speed;
+
+}				t_time;
+
 typedef struct	s_sdl
 {
 	SDL_Window		*window;
@@ -89,6 +98,7 @@ typedef struct	s_base
 	t_hero		*hero;
 	t_dist		*dist;
 	t_sdl		*sdl;
+	t_time		*time;
 
 	int			line_height[1000];
 	int			start_draw[1000];
@@ -110,6 +120,14 @@ void			draw_wall(t_base *base);
 void			init_sdl(t_base *base);
 void			esc(int a);
 void			handler(t_base *base);
+
+void			move_hero(t_base *base, int step);
+void			init_time(t_base *base);
+
+void			frames(t_base *base);
+
+// clear
+void			clear_sdl_buf(t_base *base);
 
 
 
