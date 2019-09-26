@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 20:44:42 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:50:29 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void			esc(int a);
 void			handler(t_base *base);
 
 void			move_hero(t_base *base, int step);
+void			rotation(t_base *base, int rl);
 void			init_time(t_base *base);
 
 void			frames(t_base *base);

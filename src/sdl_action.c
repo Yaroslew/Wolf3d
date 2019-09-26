@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/25 00:08:48 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:54:05 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	handler(t_base *base)
 					move_hero(base, 1);
 				if (base->sdl->event.key.keysym.sym == SDLK_DOWN)
 					move_hero(base, 2);
+				if (base->sdl->event.key.keysym.sym == SDLK_RIGHT)
+					rotation(base, 1);
+				if (base->sdl->event.key.keysym.sym == SDLK_LEFT)
+					rotation(base, 2);
+
 			}
 		}
 	}
