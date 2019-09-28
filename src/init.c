@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 20:37:08 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:12:49 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_base *init_base(void)
 		mess_err(0);
 	if (!(base->time = malloc(sizeof(t_time) * 1)))
 		mess_err(0);
+	if (!(base->color = malloc(sizeof(t_color) * 1)))
+		mess_err(0);
 	base->width = 1000;
 	base->height = 1000;
 	base->w_map = 20;
@@ -82,7 +84,7 @@ void	init_sdl(t_base *base)
 	base->sdl->wall_s = SDL_LoadBMP("/img/wall.bmp");
 	if (!base->sdl->wall_s)
 		mess_err(10);
-	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
+	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
 
 }
 

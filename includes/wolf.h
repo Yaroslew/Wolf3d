@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 20:50:29 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/28 13:15:43 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ typedef	struct s_time
 
 }				t_time;
 
+typedef struct	s_colors
+{
+	int			tex_num;
+	double 		wall_x;
+	int			tex_x;
+	int			tex_y;
+
+}				t_color;
+
 typedef struct	s_sdl
 {
 	SDL_Window		*window;
@@ -84,6 +93,8 @@ typedef struct	s_sdl
 //	SDL_Surface		*wall_e;
 	SDL_Surface		*wall_s;
 	SDL_Color		buf[1000000];
+
+
 
 }				t_sdl;
 
@@ -99,6 +110,7 @@ typedef struct	s_base
 	t_dist		*dist;
 	t_sdl		*sdl;
 	t_time		*time;
+	t_color		*color;
 
 	int			line_height[1000];
 	int			start_draw[1000];

@@ -6,21 +6,26 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 21:11:48 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/28 14:32:39 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/wolf.h"
 
-static	SDL_Color	get_color(SDL_Surface *wall, int x, int y)
+SDL_Color    get_color(SDL_Surface *surface, int x, int y)
 {
-	uint8_t	*color;
-	x = 1;
-	y = 1;
-	color = wall->pixels + wall->pitch * y + wall->format->BytesPerPixel * x;
-	return ((SDL_Color){color[0], color[1], color[2], color[3]});
+	uint8_t *color;
 
+	while (x > 63)
+		x /= 64;
+	while (y > 63)
+		y /= 64;
+
+	color = surface->pixels + surface->pitch * y + surface->format->BytesPerPixel * x;
+	//ft_printf("%d %d %d %d\n", (SDL_Color){color[0], color[1], color[2], color[3]});
+	return ((SDL_Color){color[0], color[1], color[2], color[3]});
 }
+
 
 void	draw_wall(t_base *base)
 {
@@ -36,7 +41,6 @@ void	draw_wall(t_base *base)
 			if (q > base->start_draw[line] && q < base->end_draw[line])
 			{
 				base->sdl->buf[base->width * q + line] = get_color(base->sdl->wall_s, q * base->width, q);
-
 			}
 
 			q++;
