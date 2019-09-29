@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/28 13:15:43 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/30 01:00:26 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <math.h> //https://permadi.com/1996/05/ray-casting-tutorial-14/
 # include <sys/stat.h>
 # include <fcntl.h>
-#include "/Users/pcorlys-/Library/Frameworks/SDL2.framework/Headers/SDL.h"
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_image.h>
 
 typedef struct s_hero
 {
@@ -94,7 +95,8 @@ typedef struct	s_sdl
 	SDL_Surface		*wall_s;
 	SDL_Color		buf[1000000];
 
-
+	int			x_tex;
+	int			y_tex;
 
 }				t_sdl;
 

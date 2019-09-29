@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 20:43:10 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/28 13:15:09 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/09/30 01:00:10 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	clear_sdl_buf(t_base *base)
 	q = 0;
 	while (q < 1000000)
 	{
-//		base->sdl->buf[q] = 0;
 		base->sdl->buf[q].a = 0 ;
 		base->sdl->buf[q].b = 0 ;
 		base->sdl->buf[q].g = 0 ;
