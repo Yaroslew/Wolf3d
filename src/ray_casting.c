@@ -15,13 +15,6 @@
 void	ray_casting(t_base *base)
 {
 	distance(base);
-	height_wall(base);
-
-}
-
-void	height_wall(t_base *base)
-{
-
 }
 
 void	distance(t_base *base)

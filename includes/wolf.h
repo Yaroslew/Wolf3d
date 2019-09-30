@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/30 01:00:26 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/01 00:39:14 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ typedef	struct s_time
 	double		time;
 	double 		old_time;
 	double 		frame_time;
-	double 		move_speed;
-	double 		rot_speed;
+//	double 		move_speed;
+//	double 		rot_speed;
 
 }				t_time;
 
@@ -78,6 +78,7 @@ typedef struct	s_colors
 	double 		wall_x;
 	int			tex_x;
 	int			tex_y;
+	int			h_w_tex;
 
 }				t_color;
 
@@ -89,9 +90,9 @@ typedef struct	s_sdl
 
 	SDL_Texture		*texture;
 
-//	SDL_Surface		*wall_n;
-//	SDL_Surface		*wall_w;
-//	SDL_Surface		*wall_e;
+	SDL_Surface		*wall_n;
+	SDL_Surface		*wall_w;
+	SDL_Surface		*wall_e;
 	SDL_Surface		*wall_s;
 	SDL_Color		buf[1000000];
 

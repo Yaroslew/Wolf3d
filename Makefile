@@ -37,7 +37,7 @@ LIBS_LINK	= -L $(FT_DIR) -L ~/.brew/lib -rpath ~/.brew/lib -lSDL2 -lSDL2_image -
 COMPILER	= gcc
 BUILD_FLAGS = #-Wall -Wextra -Werror
 DEBUG_FLAGS = $(BUILD_FLAGS) -g
-O_FLAGS		= -Ofast
+O_FLAGS		= #-Ofast
 
 
 .PHONY: all clean fclean re

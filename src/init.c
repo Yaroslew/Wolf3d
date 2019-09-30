@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/30 01:37:32 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/01 00:40:36 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_base *init_base(void)
 	init_sdl(base);
 	init_dist(base);
 	init_time(base);
+	base->color->h_w_tex = 512;
 	return (base);
 }
 
@@ -81,11 +82,13 @@ void	init_sdl(t_base *base)
 	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, 0);
 	if (base->sdl->ren == NULL)
 		mess_err(9);
-	base->sdl->wall_s = IMG_Load("/img/tron.jpg");
-//	base->sdl->wall_s = IMG_Load("/img/test.jpeg");
-	if (!base->sdl->wall_s)
+	base->sdl->wall_s = IMG_Load("/img/wall1.jpg");
+	base->sdl->wall_e = IMG_Load("/img/wall2.jpg");
+	base->sdl->wall_n = IMG_Load("/img/wall3.png");
+	base->sdl->wall_w = IMG_Load("/img/wall4.jpg");
+	if (!base->sdl->wall_s || !base->sdl->wall_e || !base->sdl->wall_w || !base->sdl->wall_n)
 		mess_err(10);
-	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
+	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
 	base->sdl->x_tex = 0;
 	base->sdl->y_tex = 0;
 }
