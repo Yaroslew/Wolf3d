@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/30 23:50:41 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/06 15:17:17 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		draw_column(t_base *base, int column, int x)
 	{
 		d = y * 256 - base->height * 128 + base->line_height[column] * 128;
 		base->color->tex_y = ((d * base->color->h_w_tex) / base->line_height[column]) / 256;
-		base->sdl->buf[y * base->width + column] = get_color(base->sdl->wall_s, x, base->color->tex_y);
+		base->sdl->buf[y * base->width + column] = get_color(base->sdl->walls[base->select_wall[column]], x, base->color->tex_y);
 		y++;
 	}
 }
@@ -63,10 +63,6 @@ void	draw_wall(t_base *base)
 		if (x > base->color->h_w_tex - 1)
 			x = 0;
 	}
-
-
-
-
 
 	SDL_UpdateTexture(base->sdl->texture, NULL, base->sdl->buf, base->width * 4);
 	SDL_RenderCopy(base->sdl->ren, base->sdl->texture, NULL, NULL);
