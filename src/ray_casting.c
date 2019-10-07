@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:51:37 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/07 22:17:12 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/07 22:21:04 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 void	ray_casting(t_base *base)
 {

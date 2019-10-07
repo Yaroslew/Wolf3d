@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 16:10:39 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:24:06 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 static void	init_dist(t_base *base)
 {

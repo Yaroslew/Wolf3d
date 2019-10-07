@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:19:33 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 19:30:16 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:26:06 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 void	mess_err(int num)
 {
@@ -39,6 +39,8 @@ void	mess_err(int num)
 		ft_printf("Картинка не была загружена на плоскость\n");
 	if (num == 11)
 		ft_printf("Текстура не была создана\n");
+	if (num == -1)
+		ft_printf("Невалидная карта\n");
 	exit(0);
 }
 

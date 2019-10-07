@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 00:09:27 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 02:04:30 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:26:14 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 static int  check_hit_wall(t_base *base, int ind)
 {

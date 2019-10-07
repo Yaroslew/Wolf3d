@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 16:30:48 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:23:59 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  */
 
-# include "../includes/wolf.h"
+# include "wolf.h"
 
 void			check_map(char *str, t_base *base)
 {
@@ -66,6 +66,7 @@ void			check_map(char *str, t_base *base)
 			q++;
 		}
 		q = 0;
+		free(line);
 	}
 	if (man > 1 || man < 1)
 		mess_err(5);

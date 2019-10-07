@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 15:02:26 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/08/18 18:43:41 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:35:04 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 void	record_map(char *str, t_base *base)
 {
@@ -41,5 +41,7 @@ void	record_map(char *str, t_base *base)
 		}
 		q = 0;
 		y++;
+		free(line);
 	}
+
 }

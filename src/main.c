@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:21 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/29 21:55:54 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:23:02 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf.h"
+#include "wolf.h"
 
 int main(int ac, char **av)
 {

@@ -6,12 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 00:40:50 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:24:51 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/wolf.h"
-# include <stdio.h>
+# include "wolf.h"
 
 static SDL_Color    get_color(SDL_Surface *surface, int x, int y) // получение пикселя используя координаты текстур
 {
