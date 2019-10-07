@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 00:09:27 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 01:25:48 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 02:04:30 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	move_hero(t_base *base, int step)
 
 	if (step == 1)
 	{
-		ind_x = ((int)(base->hero->x + base->hero->x_dir * base->time->move_speed) + ((int)base->hero->y * base->w_map));
-		ind_y = ((int)(base->hero->x) + (base->w_map * (int)(base->hero->y + base->hero->y_dir * base->time->move_speed)));
+		ind_x = ((int)(base->hero->x + base->hero->x_dir + 0.5 * base->time->move_speed) + ((int)(base->hero->y) * base->w_map));
+		ind_y = ((int)(base->hero->x) + (base->w_map * (int)(base->hero->y + base->hero->y_dir + 0.5 * base->time->move_speed)));
 
 		if (check_hit_wall(base, ind_x))
 			base->hero->x += base->hero->x_dir * base->time->move_speed;
@@ -57,8 +57,8 @@ void	move_hero(t_base *base, int step)
 	}
 	if (step == 2)
 	{
-		ind_x = ((int)(base->hero->x - base->hero->x_dir * base->time->move_speed) + ((int)base->hero->y * base->w_map));
-		ind_y = ((int)(base->hero->x) + (base->w_map * (int)(base->hero->y - base->hero->y_dir * base->time->move_speed)));
+		ind_x = ((int)(base->hero->x - base->hero->x_dir - 0.5 * base->time->move_speed) + ((int)base->hero->y * base->w_map));
+		ind_y = ((int)(base->hero->x) + (base->w_map * (int)(base->hero->y - base->hero->y_dir - 0.5 * base->time->move_speed)));
 		//ft_printf("%d %d\n", ind_x, ind_y);
 		if (check_hit_wall(base, ind_x))
 			base->hero->x -= base->hero->x_dir * base->time->move_speed;
@@ -66,7 +66,7 @@ void	move_hero(t_base *base, int step)
 			base->hero->y -= base->hero->y_dir * base->time->move_speed;
 	}
 //	ft_printf("  ++%f %f++\n", base->hero->x_dir, base->hero->y_dir);
-	ft_printf("%f %f | %d %d, test_x=%d  test_y=%d\n", base->hero->x, base->hero->y, ind_x, ind_y, check_hit_wall(base, ind_x), check_hit_wall(base, ind_y));
+//	ft_printf("%f %f | %d %d, test_x=%d  test_y=%d\n", base->hero->x, base->hero->y, ind_x, ind_y, check_hit_wall(base, ind_x), check_hit_wall(base, ind_y));
 
 	ray_casting(base);
 }
