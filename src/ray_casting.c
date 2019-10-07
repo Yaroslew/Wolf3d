@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:51:37 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 15:41:21 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/06 16:31:51 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ void	ray_casting(t_base *base)
 
 static void	select_walls(t_base *base, int x)
 {
-	if (base->dist->y_raydir < 0 && (base->dist->x_raydir >= -0.5 && base->dist->x_raydir <= 0.5))
+	if (base->dist->y_raydir < 0 && (base->dist->x_raydir >= 0 && base->dist->x_raydir <= 1))
 		base->select_wall[x] = 0;
-
-	if (base->dist->x_raydir < 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
+	else if (base->dist->x_raydir < 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
 		base->select_wall[x] = 1;
-
-	if (base->dist->x_raydir > 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
+	else if (base->dist->x_raydir > 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
 		base->select_wall[x] = 3;
-
-	if (base->dist->y_raydir > 0 && (base->dist->x_raydir >= -0.5 && base->dist->x_raydir <= 0.5))
+	else if (base->dist->y_raydir > 0 && (base->dist->x_raydir >= -0.5 && base->dist->x_raydir <= 0.5))
 		base->select_wall[x] = 2;
+	else
+		base->select_wall[x] = 4;
 	if (x == 0 || x == 999)
 		ft_printf("%d  %d | %f  %f\n", x, base->select_wall[x], base->dist->y_raydir, base->dist->x_raydir);
 

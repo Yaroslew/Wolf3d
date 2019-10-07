@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 13:41:16 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/06 16:10:39 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_sdl(t_base *base)
 	base->sdl->window = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, base->width, base->height, SDL_WINDOW_SHOWN);
 	if (base->sdl->window == NULL)
 		mess_err(8);
-	if (!(base->sdl->walls = malloc(sizeof(SDL_Surface*) * 4)))
+	if (!(base->sdl->walls = malloc(sizeof(SDL_Surface*) * 5)))
 		mess_err(0);
 
 	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, 0);
@@ -88,7 +88,8 @@ void	init_sdl(t_base *base)
 	base->sdl->walls[1] = IMG_Load("/img/wall2.jpg");
 	base->sdl->walls[2] = IMG_Load("/img/wall3.png");
 	base->sdl->walls[3] = IMG_Load("/img/wall4.jpg");
-	if (!base->sdl->walls[0] || !base->sdl->walls[1] || !base->sdl->walls[2] || !base->sdl->walls[3])
+	base->sdl->walls[4] = IMG_Load("/img/back.jpg");
+	if (!base->sdl->walls[0] || !base->sdl->walls[1] || !base->sdl->walls[2] || !base->sdl->walls[3] || !base->sdl->walls[4])
 		mess_err(10);
 	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
 	base->sdl->x_tex = 0;
