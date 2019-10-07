@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 15:17:17 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/08 00:40:50 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		frames(t_base *base)
 	clear_sdl_buf(base);
 	draw_wall(base);
 	clear_sdl_buf(base);
-	base->time->move_speed = base->time->frame_time * 5.0;
-	base->time->rot_speed = base->time->frame_time * 3.0;
+	base->time->move_speed = 0.1;
+	base->time->rot_speed = 0.1;
+//	base->time->move_speed = base->time->frame_time * 2.0;
+//	base->time->rot_speed = base->time->frame_time * 1.0;
 }

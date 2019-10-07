@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/07 21:12:47 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/07 23:53:28 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ typedef struct	s_base
 	int			start_draw[1000];
 	int			end_draw[1000];
 	int			select_wall[1000];
+
+	int			check_wall[8];
 
 }t_base;
 
