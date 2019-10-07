@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 13:32:18 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:12:47 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct	s_dist
 	double 		x_deltadist;
 	double 		y_deltadist;
 	double 		walldist;
+
+	int			temp[2];
 
 }				t_dist;
 
@@ -142,6 +144,7 @@ void			frames(t_base *base);
 
 // clear
 void			clear_sdl_buf(t_base *base);
+void			clear_temp_dist(t_base *base);
 
 
 

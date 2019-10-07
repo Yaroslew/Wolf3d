@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 20:43:10 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/30 01:00:10 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:15:52 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ void	clear_sdl_buf(t_base *base)
 		base->sdl->buf[q].r = 0 ;
 		q++;
 	}
+}
+
+void	clear_temp_dist(t_base *base)
+{
+	base->dist->temp[0] = -1;
+	base->dist->temp[1] = -1;
 }

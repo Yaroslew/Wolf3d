@@ -21,6 +21,8 @@ static void	init_dist(t_base *base)
 	base->dist->x_camera = 0;
 	base->dist->x_raydir = 0;
 	base->dist->y_raydir = 0;
+	base->dist->temp[0] = -1;
+	base->dist->temp[1] = -1;
 }
 
 void	init_hero(t_base *base, int q, int y)

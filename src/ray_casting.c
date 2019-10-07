@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:51:37 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/06 16:31:51 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:36:24 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,38 @@ void	ray_casting(t_base *base)
 
 static void	select_walls(t_base *base, int x)
 {
-	if (base->dist->y_raydir < 0 && (base->dist->x_raydir >= 0 && base->dist->x_raydir <= 1))
+
+	int		delta_x;
+	int		delta_y;
+
+//	if (base->dist->y_raydir < 0 && (base->dist->x_raydir >= 0 && base->dist->x_raydir <= 1))
+//		base->select_wall[x] = 0;
+//	else if (base->dist->x_raydir < 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
+//		base->select_wall[x] = 1;
+//	else if (base->dist->x_raydir > 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
+//		base->select_wall[x] = 3;
+//	else if (base->dist->y_raydir > 0 && (base->dist->x_raydir >= -0.5 && base->dist->x_raydir <= 0.5))
+//		base->select_wall[x] = 2;
+//	else
+//		base->select_wall[x] = 4;
+
+	if (base->dist->temp[0] == -1 && base->dist->temp[1] == -1)
+	{
+		base->dist->temp[0] = base->hero->x;
+		base->dist->temp[1] = base->hero->y;
+	}
+	delta_x = base->dist->x_map - base->dist->temp[0];
+	delta_y = base->dist->y_map - base->dist->temp[1];
+	if (delta_x == 0 && delta_y == 1)
 		base->select_wall[x] = 0;
-	else if (base->dist->x_raydir < 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
+	if (delta_x == 1 && delta_y == 0)
 		base->select_wall[x] = 1;
-	else if (base->dist->x_raydir > 0 && (base->dist->y_raydir >= -0.5 && base->dist->y_raydir <= 0.5))
-		base->select_wall[x] = 3;
-	else if (base->dist->y_raydir > 0 && (base->dist->x_raydir >= -0.5 && base->dist->x_raydir <= 0.5))
+	if (delta_x == 0 && delta_y == -1)
 		base->select_wall[x] = 2;
-	else
+	if (delta_x == -1 && delta_y == 0)
+		base->select_wall[x] = 3;
+	if ((delta_x == -1 && delta_y == -1) || (delta_x == 1 && delta_y == -1) || (delta_x == 1 && delta_y == 1) || (delta_x == 2 && delta_y == 0))
 		base->select_wall[x] = 4;
-	if (x == 0 || x == 999)
-		ft_printf("%d  %d | %f  %f\n", x, base->select_wall[x], base->dist->y_raydir, base->dist->x_raydir);
 
 }
 
@@ -88,6 +108,12 @@ void	distance(t_base *base)
 			{
 				base->hero->hit = 1;
 				select_walls(base, x);
+				clear_temp_dist(base);
+			}
+			else
+			{
+				base->dist->temp[0] = base->dist->x_map;
+				base->dist->temp[1] = base->dist->y_map;
 			}
 
 		}
