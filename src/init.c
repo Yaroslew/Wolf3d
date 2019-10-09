@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 02:24:06 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/09 21:57:26 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,46 @@ static void	init_dist(t_base *base)
 {
 	base->dist->time = 0;
 	base->dist->time_old = 0;
-	base->dist->x_plane = 0;
-	base->dist->y_plane = 0.66;
+	base->dist->plane.x = 0;
+	base->dist->plane.y = 0.66;
 	base->dist->x_camera = 0;
-	base->dist->x_raydir = 0;
-	base->dist->y_raydir = 0;
+	base->dist->raydir.x = 0;
+	base->dist->raydir.y = 0;
 	base->dist->temp[0] = -1;
 	base->dist->temp[1] = -1;
 }
 
-void	init_hero(t_base *base, int q, int y)
+void		init_hero(t_base *base, int q, int y)
 {
-	//base->hero->fov = 1.15192;
-	base->hero->x = q;
-	base->hero->y = y;
-	base->hero->x_dir = -1;
-	base->hero->y_dir = 0;
+	base->hero->pnt.x = q;
+	base->hero->pnt.y = y;
+	base->hero->dir.x = -1;
+	base->hero->dir.y = 0;
 	base->hero->side = 0;
 	base->hero->hit = 0;
 }
 
-void	init_time(t_base *base)
+void		init_time(t_base *base)
 {
 	base->time->time = 0;
 	base->time->old_time = 0;
 }
 
-t_base *init_base(void)
+t_base		*init_base(void)
 {
 	t_base *base;
 
-	if (!(base = malloc(sizeof(t_base) * 1)))
+	if ((!(base = malloc(sizeof(t_base) * 1))) ||
+		(!(base->hero = malloc(sizeof(t_hero) * 1))) ||
+		(!(base->sdl = malloc(sizeof(t_sdl) * 1))) ||
+		(!(base->dist = malloc(sizeof(t_dist) * 1))) ||
+		(!(base->time = malloc(sizeof(t_time) * 1))) ||
+		(!(base->color = malloc(sizeof(t_color) * 1))))
 		mess_err(0);
-	if (!(base->hero = malloc(sizeof(t_hero) * 1)))
-		mess_err(0);
-	if (!(base->sdl = malloc(sizeof(t_sdl) * 1)))
-		mess_err(0);
-	if (!(base->dist = malloc(sizeof(t_dist) * 1)))
-		mess_err(0);
-	if (!(base->time = malloc(sizeof(t_time) * 1)))
-		mess_err(0);
-	if (!(base->color = malloc(sizeof(t_color) * 1)))
-		mess_err(0);
-	base->width = 1000;
-	base->height = 800;
-	base->w_map = 20;
-	base->h_map = 20;
+	base->win_s.x = WDTH;
+	base->win_s.y = HGTH;
+	base->map_s.x = 20;
+	base->map_s.y = 20;
 	init_sdl(base);
 	init_dist(base);
 	init_time(base);
@@ -69,32 +63,34 @@ t_base *init_base(void)
 	return (base);
 }
 
-
-
-void	init_sdl(t_base *base)
+void		put_walls(t_sdl *sdl)
 {
-//  Инициализация окна и рендера
-
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-		mess_err(7);
-	base->sdl->window = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, base->width, base->height, SDL_WINDOW_SHOWN);
-	if (base->sdl->window == NULL)
-		mess_err(8);
-	if (!(base->sdl->walls = malloc(sizeof(SDL_Surface*) * 5)))
+	if (!(sdl->walls = malloc(sizeof(SDL_Surface*) * 5)))
 		mess_err(0);
-
-	base->sdl->ren = SDL_CreateRenderer(base->sdl->window, -1, 0);
-	if (base->sdl->ren == NULL)
-		mess_err(9);
-	base->sdl->walls[0] = IMG_Load("/img/wall1.jpg");
-	base->sdl->walls[1] = IMG_Load("/img/wall2.jpg");
-	base->sdl->walls[2] = IMG_Load("/img/wall3.png");
-	base->sdl->walls[3] = IMG_Load("/img/wall4.jpg");
-	base->sdl->walls[4] = IMG_Load("/img/back.jpg");
-	if (!base->sdl->walls[0] || !base->sdl->walls[1] || !base->sdl->walls[2] || !base->sdl->walls[3] || !base->sdl->walls[4])
+	sdl->walls[0] = IMG_Load(STH);
+	sdl->walls[1] = IMG_Load(NRTH);
+	sdl->walls[2] = IMG_Load(WEST);
+	sdl->walls[3] = IMG_Load(EAST);
+	sdl->walls[4] = IMG_Load(BACK);
+	if (!sdl->walls[0] || !sdl->walls[1] || !sdl->walls[2] ||
+		!sdl->walls[3] || !sdl->walls[4])
 		mess_err(10);
-	base->sdl->texture = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, base->width, base->height);
-	base->sdl->x_tex = 0;
-	base->sdl->y_tex = 0;
 }
 
+void		init_sdl(t_base *base)
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+		mess_err(7);
+	base->sdl->win = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED,
+	SDL_WINDOWPOS_UNDEFINED, base->win_s.x, base->win_s.y, SDL_WINDOW_SHOWN);
+	if (base->sdl->win == NULL)
+		mess_err(8);
+	base->sdl->ren = SDL_CreateRenderer(base->sdl->win, -1, 0);
+	if (base->sdl->ren == NULL)
+		mess_err(9);
+	put_walls(base->sdl);
+	base->sdl->tex = SDL_CreateTexture(base->sdl->ren, SDL_PIXELFORMAT_RGBA32,
+			SDL_TEXTUREACCESS_STREAMING, base->win_s.x, base->win_s.y);
+	base->sdl->tex_p.x = 0;
+	base->sdl->tex_p.y = 0;
+}

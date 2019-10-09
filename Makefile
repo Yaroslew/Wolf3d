@@ -17,6 +17,7 @@ SRC_FILES	=   main.c\
                 ray_casting.c\
                 record_map.c\
                 sdl_action.c\
+				utils.c
 
 SRCS 		= $(addprefix $(SRCS_DIR)/, $(SRC_FILES))
 OBJS		= $(addprefix $(OBJS_DIR)/, $(SRC_FILES:c=o))

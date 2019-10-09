@@ -6,11 +6,11 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/09/26 22:54:05 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/09 21:59:21 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h" // исправить заголовки
+#include "wolf.h"
 
 void	handler(t_base *base)
 {
@@ -19,7 +19,7 @@ void	handler(t_base *base)
 	run = 1;
 	while (run)
 	{
-		while(SDL_PollEvent(&base->sdl->event))
+		while (SDL_PollEvent(&base->sdl->event))
 		{
 			if (base->sdl->event.type == SDL_QUIT)
 				esc(1);
@@ -28,14 +28,13 @@ void	handler(t_base *base)
 				if (base->sdl->event.key.keysym.sym == SDLK_ESCAPE)
 					esc(1);
 				if (base->sdl->event.key.keysym.sym == SDLK_UP)
-					move_hero(base, 1);
+					move_forward(base);
 				if (base->sdl->event.key.keysym.sym == SDLK_DOWN)
-					move_hero(base, 2);
+					move_back(base);
 				if (base->sdl->event.key.keysym.sym == SDLK_RIGHT)
-					rotation(base, 1);
+					rot_rght(base);
 				if (base->sdl->event.key.keysym.sym == SDLK_LEFT)
-					rotation(base, 2);
-
+					rot_lft(base);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 02:23:59 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:10:36 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void			check_map(char *str, t_base *base)
 	while (get_next_line(fd, &line))
 	{
 		height++;
-		if (height > base->height)
+		if (height > base->win_s.y)
 			mess_err(4);
 		while (line[q])
 		{
-			if (q > base->w_map - 1)
+			if (q > base->map_s.x - 1)
 				mess_err(6);
 			if (line[q] == 'z')
 				man++;

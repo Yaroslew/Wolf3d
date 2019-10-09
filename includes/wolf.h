@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/07 23:53:28 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/09 23:56:30 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,63 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
 
-typedef struct s_hero
+# define STH "/img/wall1.jpg"
+# define NRTH "/img/wall2.jpg"
+# define WEST "/img/wall3.png"
+# define EAST "/img/wall4.jpg"
+# define BACK "/img/back.jpg"
+# define WDTH 1000
+# define HGTH 800
+
+typedef struct	s_pntd
 {
 	double		x;
-	double 		y;
-	double 		x_dir;
-	double 		y_dir;
-	int			x_step;
-	int			y_step;
+	double		y;
+}				t_pntd;
+
+typedef struct	s_pnti
+{
+	int			x;
+	int			y;
+}				t_pnti;
+
+typedef struct s_hero
+{
+	t_pntd		pnt;
+	t_pntd		dir;
+	t_pnti		step;
+//	double		x;
+//	double 		y;
+//	double 		x_dir;
+//	double 		y_dir;
+//	int			x_step;
+//	int			y_step;
 	int			hit;
 	int			side;
-
 }				t_hero;
 
 typedef struct	s_dist
 {
-	double 		x_plane;
-	double 		y_plane;
+	t_pntd		plane;
+	t_pntd		raydir;
+	t_pnti		map;
+	t_pntd		sidedist;
+	t_pntd		deltadist;
+//	double 		x_plane;
+//	double 		y_plane;
 	double 		time;
 	double 		time_old;
 	double 		x_camera;
-	double 		x_raydir;
-	double 		y_raydir;
-
-	int			x_map;
-	int			y_map;
-	double 		x_sidedist;
-	double 		y_sidedist;
-	double 		x_deltadist;
-	double 		y_deltadist;
+//	double 		x_raydir;
+//	double 		y_raydir;
+//	int			x_map;
+//	int			y_map;
+//	double 		x_sidedist;
+//	double 		y_sidedist;
+//	double 		x_deltadist;
+//	double 		y_deltadist;
 	double 		walldist;
-
 	int			temp[2];
-
 }				t_dist;
 
 typedef struct s_map
@@ -71,57 +95,51 @@ typedef	struct s_time
 	double 		frame_time;
 	double 		move_speed;
 	double 		rot_speed;
-
 }				t_time;
 
 typedef struct	s_colors
 {
+	t_pnti		tex;
 	int			tex_num;
 	double 		wall_x;
-	int			tex_x;
-	int			tex_y;
+//	int			tex_x;
+//	int			tex_y;
 	int			h_w_tex;
-
 }				t_color;
 
 typedef struct	s_sdl
 {
-	SDL_Window		*window;
+	t_pnti			tex_p;
+	SDL_Window		*win;
 	SDL_Event		event;
 	SDL_Renderer	*ren;
-
-	SDL_Texture		*texture;
-
+	SDL_Texture		*tex;
 	SDL_Surface		**walls;
 	SDL_Color		buf[1000000];
-
-	int			x_tex;
-	int			y_tex;
-
+//	int			x_tex;
+//	int			y_tex;
 }				t_sdl;
 
 typedef struct	s_base
 {
-	int			width;
-	int			height;
-	int			w_map;
-	int			h_map;
-
+	t_pnti		win_s;
+	t_pnti		map_s;
+//	int			width;
+//	int			height;
+//	int			w_map;
+//	int			h_map;
 	t_map		*map;
 	t_hero		*hero;
 	t_dist		*dist;
 	t_sdl		*sdl;
 	t_time		*time;
 	t_color		*color;
-
 	int			line_height[1000];
 	int			start_draw[1000];
 	int			end_draw[1000];
 	int			select_wall[1000];
-
 	int			check_wall[8];
-
-}t_base;
+}				t_base;
 
 void			mess_err(int num);
 void			check_map(char *str, t_base *base);
@@ -132,22 +150,29 @@ void			ray_casting(t_base *base);
 void			distance(t_base *base);
 int				check_walls(t_base *base, int x, int y);
 void			height_wall(t_base *base);
+void			prepare_wall(t_base *base);
 void			draw_wall(t_base *base);
 
+void			put_walls(t_sdl *sdl);
 void			init_sdl(t_base *base);
 void			esc(int a);
 void			handler(t_base *base);
 
-void			move_hero(t_base *base, int step);
-void			rotation(t_base *base, int rl);
+void			move_forward(t_base *base);
+void			move_back(t_base *base);
+void			rot_rght(t_base *base);
+void			rot_lft(t_base *base);
 void			init_time(t_base *base);
+
+void			base_draw(t_base *base, int x);
+void			wall_dist(t_base *base, int x);
+void			check_hero_step(t_base *base);
+void			init_act_pos(t_base *base, int x);
 
 void			frames(t_base *base);
 
 // clear
 void			clear_sdl_buf(t_base *base);
 void			clear_temp_dist(t_base *base);
-
-
 
 #endif

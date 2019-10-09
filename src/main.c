@@ -6,13 +6,13 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:21 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/08 02:23:02 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/09 12:33:02 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_base	*base;
 
@@ -21,8 +21,6 @@ int main(int ac, char **av)
 	base = init_base();
 	check_map(av[1], base);
 	record_map(av[1], base);
-
-
 	ray_casting(base);
 	handler(base);
 	return (0);
