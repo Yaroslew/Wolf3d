@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 15:02:26 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/09 22:14:45 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/10 21:51:08 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void			record_map(char *str, t_base *base)
 {
 	int		fd;
 
+	printf("%d\n", base->map_s.x);
+	printf("%d\n", base->map_s.y);
 	if (!(base->map = malloc(sizeof(t_map) * (base->map_s.x * base->map_s.y))))
 		mess_err(0);
 	if (!(fd = open(str, O_RDONLY)))

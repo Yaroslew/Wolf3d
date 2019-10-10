@@ -6,70 +6,99 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/09 15:10:36 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/10 21:54:10 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*  x - стены
- * 	z = игрок
- *	20 - высота
- *	20 - ширина
- *
- */
+#include "wolf.h"
 
-# include "wolf.h"
-
-void			check_map(char *str, t_base *base)
+static void	free_this(char **matrix)
 {
-	int		fd;
-	int 	q;
-	char	*line;
-	int		height;
-	int		man;
+	int i;
 
-	q = 0;
-	height = 0;
-	man = 0;
+	while (matrix[i])
+	{
+		ft_strdel(&matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+static void	check_first_and_last(char **matrix, t_pnti tmp)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (tmp.y < 4 || tmp.x < 4)
+		mess_err(-1);
+	while (j < tmp.x)
+	{
+		if (matrix[0][j] != 'x' || matrix[tmp.y - 1][j] != 'x')
+			mess_err(3);
+		j++;
+	}
+	while (i < tmp.y)
+	{
+		if (matrix[i][0] != 'x' || matrix[i][tmp.x - 1] != 'x')
+			mess_err(3);
+		i++;
+	}
+}
+
+static void	validate_this(char **matrix, t_pnti tmp)
+{
+	int z;
+	int i;
+	int j;
+
+	z = 0;
+	i = 0;
+	j = 0;
+	while (i < tmp.y)
+	{
+		while (j < tmp.x)
+		{
+			if (matrix[i][j] != 'x' && matrix[i][j] != '0'
+					&& matrix[i][j] != 'z')
+				mess_err(-1);
+			if (matrix[i][j] == 'z')
+				z += 1;
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	if (z != 1)
+		mess_err(5);
+	check_first_and_last(matrix, tmp);
+}
+
+void		check_map(char *str, t_base *base)
+{
+	t_pnti	tmp;
+	int		fd;
+	char	*line;
+	char	**matrix;
+
+	tmp.y = 0;
+	tmp.x = 0;
+	matrix = (char **)malloc(sizeof(char *) * 100);
 	if (!(fd = open(str, O_RDONLY)))
 		mess_err(2);
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &line) == 1)
 	{
-		height++;
-		if (height > base->win_s.y)
-			mess_err(4);
-		while (line[q])
-		{
-			if (q > base->map_s.x - 1)
-				mess_err(6);
-			if (line[q] == 'z')
-				man++;
-			if (height == 1)
-			{
-				if (line[q] != 'x')
-					mess_err(3);
-			}
-			if (height == 20)
-			{
-				if (line[q] != 'x')
-					mess_err(3);
-			}
-			if (q == 0)
-			{
-				if (line[q] != 'x')
-					mess_err(3);
-			}
-			if (line[q + 1] == '\0')
-			{
-				if (line[q] != 'x')
-					mess_err(3);
-			}
-			q++;
-		}
-		q = 0;
+		matrix[tmp.y] = ft_strdup(line);
+		if (tmp.y == 0)
+			tmp.x = ft_strlen(line);
+		else if (tmp.x != ft_strlen(line))
+			mess_err(-1);
 		free(line);
+		tmp.y++;
 	}
-	if (man > 1 || man < 1)
-		mess_err(5);
-	close(fd);
-	return;
+	validate_this(matrix, tmp);
+	free_this(matrix);
+	base->map_s.x = tmp.x;
+	base->map_s.y = tmp.y;
 }
