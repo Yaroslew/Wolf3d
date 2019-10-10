@@ -6,7 +6,7 @@
 /*   By: qweissna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:21:32 by qweissna          #+#    #+#             */
-/*   Updated: 2019/10/09 23:59:03 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/10 11:22:05 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ void	init_act_pos(t_base *base, int x)
 	base->dist->deltadist.y = fabs(1.0 / base->dist->raydir.y);
 	base->dist->map.x = (int)base->hero->pnt.x;
 	base->dist->map.y = (int)base->hero->pnt.y;
+}
+
+void	put_walls(t_sdl *sdl)
+{
+	if (!(sdl->walls = malloc(sizeof(SDL_Surface*) * 5)))
+		mess_err(0);
+	sdl->walls[0] = IMG_Load(STH);
+	sdl->walls[1] = IMG_Load(NRTH);
+	sdl->walls[2] = IMG_Load(WEST);
+	sdl->walls[3] = IMG_Load(EAST);
+	sdl->walls[4] = IMG_Load(BACK);
+	if (!sdl->walls[0] || !sdl->walls[1] || !sdl->walls[2] ||
+		!sdl->walls[3] || !sdl->walls[4])
+		mess_err(10);
 }
 
 void	check_hero_step(t_base *base)

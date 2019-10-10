@@ -6,17 +6,17 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/09 23:56:30 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/10 11:26:05 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_WOLF_H
-#define WOLF3D_WOLF_H
+# define WOLF3D_WOLF_H
 
 # include "../libft/includes/libft.h"
 # include "../libft/includes/get_next_line.h"
 # include <stdlib.h>
-# include <math.h> //https://permadi.com/1996/05/ray-casting-tutorial-14/
+# include <math.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <SDL2/SDL.h>
@@ -42,17 +42,11 @@ typedef struct	s_pnti
 	int			y;
 }				t_pnti;
 
-typedef struct s_hero
+typedef struct	s_hero
 {
 	t_pntd		pnt;
 	t_pntd		dir;
 	t_pnti		step;
-//	double		x;
-//	double 		y;
-//	double 		x_dir;
-//	double 		y_dir;
-//	int			x_step;
-//	int			y_step;
 	int			hit;
 	int			side;
 }				t_hero;
@@ -64,46 +58,34 @@ typedef struct	s_dist
 	t_pnti		map;
 	t_pntd		sidedist;
 	t_pntd		deltadist;
-//	double 		x_plane;
-//	double 		y_plane;
-	double 		time;
-	double 		time_old;
-	double 		x_camera;
-//	double 		x_raydir;
-//	double 		y_raydir;
-//	int			x_map;
-//	int			y_map;
-//	double 		x_sidedist;
-//	double 		y_sidedist;
-//	double 		x_deltadist;
-//	double 		y_deltadist;
-	double 		walldist;
+	double		time;
+	double		time_old;
+	double		x_camera;
+	double		walldist;
 	int			temp[2];
 }				t_dist;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	int			x;
 	int			y;
 	char		data;
 }				t_map;
 
-typedef	struct s_time
+typedef	struct	s_time
 {
 	double		time;
-	double 		old_time;
-	double 		frame_time;
-	double 		move_speed;
-	double 		rot_speed;
+	double		old_time;
+	double		frame_time;
+	double		move_speed;
+	double		rot_speed;
 }				t_time;
 
 typedef struct	s_colors
 {
 	t_pnti		tex;
 	int			tex_num;
-	double 		wall_x;
-//	int			tex_x;
-//	int			tex_y;
+	double		wall_x;
 	int			h_w_tex;
 }				t_color;
 
@@ -116,18 +98,12 @@ typedef struct	s_sdl
 	SDL_Texture		*tex;
 	SDL_Surface		**walls;
 	SDL_Color		buf[1000000];
-//	int			x_tex;
-//	int			y_tex;
 }				t_sdl;
 
 typedef struct	s_base
 {
 	t_pnti		win_s;
 	t_pnti		map_s;
-//	int			width;
-//	int			height;
-//	int			w_map;
-//	int			h_map;
 	t_map		*map;
 	t_hero		*hero;
 	t_dist		*dist;
@@ -171,7 +147,6 @@ void			init_act_pos(t_base *base, int x);
 
 void			frames(t_base *base);
 
-// clear
 void			clear_sdl_buf(t_base *base);
 void			clear_temp_dist(t_base *base);
 

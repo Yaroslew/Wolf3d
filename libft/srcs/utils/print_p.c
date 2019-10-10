@@ -6,7 +6,7 @@
 /*   By: galiza <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 13:55:29 by galiza            #+#    #+#             */
-/*   Updated: 2019/06/20 15:53:37 by galiza           ###   ########.fr       */
+/*   Updated: 2019/10/10 11:27:35 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,4 @@ char				*clean_fract_one(char *ftitoa)
 	ftitoa--;
 	free(ftitoa);
 	return (res);
-
 }
