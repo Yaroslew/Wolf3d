@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 15:02:26 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/10 21:51:08 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:05:52 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		line_record(t_base *base, int fd)
 				init_hero(base, q, y);
 			base->map[r].x = q;
 			base->map[r].y = y;
-			base->map[r].data = line[q];
+			base->map[r].data = line[q] != 'z' ? line[q] : '0';
 			q++;
 			r++;
 		}

@@ -6,19 +6,20 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/10 21:54:10 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:09:36 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-static void	free_this(char **matrix)
+static void	free_this(char **matrix, int y)
 {
 	int i;
 
-	while (matrix[i])
+	i = 0;
+	while (i < y)
 	{
-		ft_strdel(&matrix[i]);
+		free(matrix[i]);
 		i++;
 	}
 	free(matrix);
@@ -33,6 +34,8 @@ static void	check_first_and_last(char **matrix, t_pnti tmp)
 	j = 0;
 	if (tmp.y < 4 || tmp.x < 4)
 		mess_err(-1);
+	if (tmp.x != tmp.y)
+		mess_err(4);
 	while (j < tmp.x)
 	{
 		if (matrix[0][j] != 'x' || matrix[tmp.y - 1][j] != 'x')
@@ -84,7 +87,8 @@ void		check_map(char *str, t_base *base)
 
 	tmp.y = 0;
 	tmp.x = 0;
-	matrix = (char **)malloc(sizeof(char *) * 100);
+	if (!(matrix = (char **)malloc(sizeof(char *) * 1000)))
+		mess_err(2);
 	if (!(fd = open(str, O_RDONLY)))
 		mess_err(2);
 	while (get_next_line(fd, &line) == 1)
@@ -98,7 +102,7 @@ void		check_map(char *str, t_base *base)
 		tmp.y++;
 	}
 	validate_this(matrix, tmp);
-	free_this(matrix);
+	free_this(matrix, tmp.y);
 	base->map_s.x = tmp.x;
 	base->map_s.y = tmp.y;
 }

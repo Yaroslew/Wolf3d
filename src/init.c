@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:24:09 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/10 20:46:56 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/10 22:22:14 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ t_base		*init_base(void)
 		mess_err(0);
 	base->win_s.x = WDTH;
 	base->win_s.y = HGTH;
-	base->map_s.x = 1;
-	base->map_s.y = 1;
+	base->map_s.x = 22;
+	base->map_s.y = 23;
 	init_sdl(base);
 	init_dist(base);
 	init_time(base);
