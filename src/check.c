@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/11 15:09:36 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/12 10:59:04 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		check_map(char *str, t_base *base)
 
 	tmp.y = 0;
 	tmp.x = 0;
-	if (!(matrix = (char **)malloc(sizeof(char *) * 1000)))
+	if (!(matrix = (char **)malloc(sizeof(char *) * 100000)))
 		mess_err(2);
 	if (!(fd = open(str, O_RDONLY)))
 		mess_err(2);
@@ -96,7 +96,7 @@ void		check_map(char *str, t_base *base)
 		matrix[tmp.y] = ft_strdup(line);
 		if (tmp.y == 0)
 			tmp.x = ft_strlen(line);
-		else if (tmp.x != ft_strlen(line))
+		else if (tmp.x != (int)ft_strlen(line))
 			mess_err(-1);
 		free(line);
 		tmp.y++;
