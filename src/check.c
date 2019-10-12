@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/12 20:08:33 by qweissna         ###   ########.fr       */
+/*   Updated: 2019/10/12 20:20:48 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		check_map(char *str, t_base *base)
 		matrix[tmp.y] = ft_strdup(line);
 		if (tmp.y == 0)
 			tmp.x = ft_strlen(line);
-		else if (tmp.x != (int)ft_strlen(line) && tmp.x > 315)
+		else if (tmp.x != (int)ft_strlen(line))
 			mess_err(-1);
 		free(line);
 		tmp.y++;

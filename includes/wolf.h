@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:08:24 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/12 11:01:31 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/12 20:20:48 by pcorlys-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
 
-# define STH "/img/wall1.jpg"
-# define NRTH "/img/wall2.jpg"
-# define WEST "/img/wall3.png"
-# define EAST "/img/wall4.jpg"
+# define STH "/img/wall1_1.jpg"
+# define NRTH "/img/wall1_2.jpg"
+# define WEST "/img/wall1_3.jpg"
+# define EAST "/img/wall1_4.jpg"
 # define BACK "/img/back.jpg"
 # define WDTH 1000
 # define HGTH 800
