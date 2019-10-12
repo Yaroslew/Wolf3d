@@ -6,7 +6,7 @@
 /*   By: pcorlys- <pcorlys-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:25:16 by pcorlys-          #+#    #+#             */
-/*   Updated: 2019/10/12 10:59:04 by pcorlys-         ###   ########.fr       */
+/*   Updated: 2019/10/12 19:47:36 by qweissna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ static void	check_first_and_last(char **matrix, t_pnti tmp)
 	}
 }
 
+static void	pos_h_check(char **matrix, int i, int j)
+{
+	if (matrix[i - 1][j] == 'x' || matrix[i + 1][j] == 'x' ||
+			matrix[i][j - 1] == 'x' || matrix[i][j + 1] == 'x')
+		mess_err(5);
+	return ;
+}
+
 static void	validate_this(char **matrix, t_pnti tmp)
 {
 	int z;
@@ -59,6 +67,7 @@ static void	validate_this(char **matrix, t_pnti tmp)
 	z = 0;
 	i = 0;
 	j = 0;
+	check_first_and_last(matrix, tmp);
 	while (i < tmp.y)
 	{
 		while (j < tmp.x)
@@ -66,8 +75,8 @@ static void	validate_this(char **matrix, t_pnti tmp)
 			if (matrix[i][j] != 'x' && matrix[i][j] != '0'
 					&& matrix[i][j] != 'z')
 				mess_err(-1);
-			if (matrix[i][j] == 'z')
-				z += 1;
+			if (matrix[i][j] == 'z' && z++ < 3)
+				pos_h_check(matrix, i, j);
 			j++;
 		}
 		i++;
@@ -75,7 +84,6 @@ static void	validate_this(char **matrix, t_pnti tmp)
 	}
 	if (z != 1)
 		mess_err(5);
-	check_first_and_last(matrix, tmp);
 }
 
 void		check_map(char *str, t_base *base)

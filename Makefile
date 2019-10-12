@@ -1,4 +1,4 @@
-NAME = Wolf3d
+NAME = wolf3d
 SRC = ./src
 OBJ = ./obj
 LIB = ./libft
