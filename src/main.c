@@ -12,7 +12,15 @@
 
 #include "wolf.h"
 
-int	main(int ac, char **av)
+static void	music_player(t_base *base)
+{
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+		esc(2);
+	if (!(base->sdl->ost = Mix_LoadMUS("/img/ost.wav")))
+		esc(2);
+}
+
+int			main(int ac, char **av)
 {
 	t_base	*base;
 
@@ -22,6 +30,8 @@ int	main(int ac, char **av)
 	check_map(av[1], base);
 	record_map(av[1], base);
 	ray_casting(base);
+	music_player(base);
+	Mix_PlayMusic(base->sdl->ost, -1);
 	handler(base);
 	return (0);
 }

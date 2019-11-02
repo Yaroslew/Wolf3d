@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
+# include <SDL2/SDL_mixer.h>
 
 # define STH "/img/wall1_1.jpg"
 # define NRTH "/img/wall1_2.jpg"
@@ -98,6 +99,7 @@ typedef struct	s_sdl
 	SDL_Texture		*tex;
 	SDL_Surface		**walls;
 	SDL_Color		buf[1000000];
+	Mix_Music		*ost;
 }				t_sdl;
 
 typedef struct	s_base
